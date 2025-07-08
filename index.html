@@ -104,13 +104,29 @@
         };
 
         const cookingData = [
-            { region: 'Vacuno / Res', cut: 'Filete / Lomo (Rare)', tempC: 52, tempF: 125 },
-            { region: 'Vacuno / Res', cut: 'Lomo Vetado (Medium Rare)', tempC: 55, tempF: 131 },
-            { region: 'Vacuno / Res', cut: 'Asado de Tira (Well Done)', tempC: 88, tempF: 190 },
-            { region: 'Vacuno / Res', cut: 'Punta de Ganso (Medium)', tempC: 60, tempF: 140 },
+            { region: 'Vacuno / Res', cut: 'Filete / Lomo', doneness: [
+                { level: 'Rare', tempC: 52, tempF: 125 },
+                { level: 'Medium Rare', tempC: 55, tempF: 131 },
+                { level: 'Medium', tempC: 60, tempF: 140 },
+                { level: 'Medium Well', tempC: 65, tempF: 150 },
+                { level: 'Well Done', tempC: 71, tempF: 160 }
+            ]},
+            { region: 'Vacuno / Res', cut: 'Lomo Vetado', doneness: [
+                { level: 'Medium Rare', tempC: 55, tempF: 131 },
+                { level: 'Medium', tempC: 60, tempF: 140 },
+                { level: 'Well Done', tempC: 71, tempF: 160 }
+            ]},
+            { region: 'Vacuno / Res', cut: 'Asado de Tira', tempC: 88, tempF: 190 },
+            { region: 'Vacuno / Res', cut: 'Punta de Ganso', doneness: [
+                { level: 'Medium', tempC: 60, tempF: 140 },
+                { level: 'Well Done', tempC: 71, tempF: 160 }
+            ]},
             { region: 'Vacuno / Res', cut: 'Hamburguesas', tempC: 71, tempF: 160 },
             { region: 'Vacuno / Res', cut: 'Brisket (BBQ)', tempC: 93, tempF: 200 },
-            { region: 'Vacuno / Res', cut: 'Vacío (Jugoso)', tempC: 60, tempF: 140 },
+            { region: 'Vacuno / Res', cut: 'Vacío', doneness: [
+                { level: 'Jugoso', tempC: 60, tempF: 140 },
+                { level: 'Cocido', tempC: 71, tempF: 160 }
+            ]},
             { region: 'Cerdo', cut: 'Costillar de Cerdo (BBQ)', tempC: 90, tempF: 195 },
             { region: 'Cerdo', cut: 'Pulled Pork', tempC: 93, tempF: 200 },
             { region: 'Cerdo', cut: 'Lomo de Cerdo', tempC: 63, tempF: 145 },
@@ -119,14 +135,23 @@
             { region: 'Aves', cut: 'Pechuga de Pollo', tempC: 74, tempF: 165 },
             { region: 'Aves', cut: 'Muslos de Pollo', tempC: 79, tempF: 175 },
             { region: 'Aves', cut: 'Pavo (Pechuga)', tempC: 74, tempF: 165 },
-            { region: 'Cordero', cut: 'Pierna de Cordero (Medium)', tempC: 63, tempF: 145 },
-            { region: 'Cordero', cut: 'Chuletas de Cordero (Medium Rare)', tempC: 57, tempF: 135 },
+            { region: 'Cordero', cut: 'Pierna de Cordero', doneness: [
+                { level: 'Medium', tempC: 63, tempF: 145 },
+                { level: 'Well Done', tempC: 71, tempF: 160 }
+            ]},
+            { region: 'Cordero', cut: 'Chuletas de Cordero', doneness: [
+                { level: 'Medium Rare', tempC: 57, tempF: 135 },
+                { level: 'Medium', tempC: 63, tempF: 145 }
+            ]},
             { region: 'Pescado', cut: 'Salmón', tempC: 60, tempF: 140 },
-            { region: 'Pescado', cut: 'Atún (Sellado / Rare)', tempC: 49, tempF: 120 },
+            { region: 'Pescado', cut: 'Atún (Sellado)', tempC: 49, tempF: 120 },
             { region: 'Pescado', cut: 'Merluza / Corvina', tempC: 63, tempF: 145 },
             { region: 'Proteínas Exóticas', cut: 'Carne de Cocodrilo', tempC: 74, tempF: 165 },
             { region: 'Proteínas Exóticas', cut: 'Ancas de Rana', tempC: 74, tempF: 165 },
-            { region: 'Proteínas Exóticas', cut: 'Ciervo / Venado (Medium Rare)', tempC: 57, tempF: 135 }
+            { region: 'Proteínas Exóticas', cut: 'Ciervo / Venado', doneness: [
+                { level: 'Medium Rare', tempC: 57, tempF: 135 },
+                { level: 'Medium', tempC: 63, tempF: 145 }
+            ]}
         ];
 
         function celsiusToFahrenheit(celsius) { return (celsius * 9/5) + 32; }
@@ -173,12 +198,22 @@
                 
                 items.forEach((item, index) => {
                     const listItem = document.createElement('li');
-                    listItem.className = 'flex justify-between items-center bg-stone-800 p-3 rounded-lg';
+                    listItem.className = 'flex flex-col bg-stone-800 p-3 rounded-lg';
                     if (index >= popularThreshold) {
                         listItem.style.display = 'none';
                         listItem.classList.add('extra-item');
                     }
-                    listItem.innerHTML = `<span>${item.cut}</span><span class="font-mono text-lg">${item.tempC}°C <span class="text-orange-800">/</span> ${item.tempF}°F</span>`;
+
+                    let contentHTML = `<div class="flex justify-between items-center mb-1"><span>${item.cut}</span>`;
+                    if (item.doneness) {
+                        contentHTML += `<span class="font-mono text-lg text-orange-400">Puntos de Cocción</span></div>`;
+                        item.doneness.forEach(d => {
+                            contentHTML += `<div class="flex justify-between items-center text-sm ml-4"><span>- ${d.level}</span><span class="font-mono">${d.tempC}°C <span class="text-orange-800">/</span> ${d.tempF}°F</span></div>`;
+                        });
+                    } else {
+                        contentHTML += `<span class="font-mono text-lg">${item.tempC}°C <span class="text-orange-800">/</span> ${item.tempF}°F</span></div>`;
+                    }
+                    listItem.innerHTML = contentHTML;
                     list.appendChild(listItem);
                 });
 
