@@ -16,7 +16,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000;
+            background-color: #171717; /* neutral-900 */
             color: #fff;
         }
         @keyframes bounce {
@@ -34,26 +34,26 @@
             transition: transform 0.5s ease;
         }
         .show-more-btn {
-            background-color: #78350f; /* orange-900 */
-            color: #fdba74; /* orange-300 */
+            background-color: #4A3728; /* custom brown */
+            color: #A7D9F0; /* custom light blue */
         }
         .show-more-btn:hover {
-            background-color: #9a3412; /* orange-800 */
+            background-color: #5C4B3C; /* custom darker brown */
         }
 
         /* Animación de fuego para el fondo */
         @keyframes fire-flicker {
-            0% { box-shadow: 0 0 6px 3px rgba(255, 100, 0, 0.2), 0 0 10px 5px rgba(255, 50, 0, 0.1); }
-            10% { box-shadow: 0 0 7px 4px rgba(255, 110, 0, 0.25), 0 0 12px 6px rgba(255, 60, 0, 0.15); }
-            20% { box-shadow: 0 0 5px 2px rgba(255, 90, 0, 0.15), 0 0 8px 4px rgba(255, 40, 0, 0.05); }
-            30% { box-shadow: 0 0 9px 5px rgba(255, 130, 0, 0.4), 0 0 18px 9px rgba(255, 80, 0, 0.25); }
-            40% { box-shadow: 0 0 6px 3px rgba(255, 100, 0, 0.2), 0 0 10px 5px rgba(255, 50, 0, 0.1); }
-            50% { box-shadow: 0 0 8px 4px rgba(255, 120, 0, 0.3), 0 0 15px 7px rgba(255, 70, 0, 0.2); }
-            60% { box-shadow: 0 0 5px 2px rgba(255, 90, 0, 0.15), 0 0 8px 4px rgba(255, 40, 0, 0.05); }
-            70% { box-shadow: 0 0 10px 6px rgba(255, 140, 0, 0.5), 0 0 20px 10px rgba(255, 90, 0, 0.3); }
-            80% { box-shadow: 0 0 6px 3px rgba(255, 100, 0, 0.2), 0 0 10px 5px rgba(255, 50, 0, 0.1); }
-            90% { box-shadow: 0 0 7px 4px rgba(255, 110, 0, 0.25), 0 0 12px 6px rgba(255, 60, 0, 0.15); }
-            100% { box-shadow: 0 0 6px 3px rgba(255, 100, 0, 0.2), 0 0 10px 5px rgba(255, 50, 0, 0.1); }
+            0% { box-shadow: 0 0 6px 3px rgba(255, 240, 200, 0.2), 0 0 10px 5px rgba(255, 230, 180, 0.1); }
+            10% { box-shadow: 0 0 7px 4px rgba(255, 245, 210, 0.25), 0 0 12px 6px rgba(255, 235, 190, 0.15); }
+            20% { box-shadow: 0 0 5px 2px rgba(255, 235, 190, 0.15), 0 0 8px 4px rgba(255, 225, 170, 0.05); }
+            30% { box-shadow: 0 0 9px 5px rgba(255, 250, 220, 0.4), 0 0 18px 9px rgba(255, 240, 200, 0.25); }
+            40% { box-shadow: 0 0 6px 3px rgba(255, 240, 200, 0.2), 0 0 10px 5px rgba(255, 230, 180, 0.1); }
+            50% { box-shadow: 0 0 8px 4px rgba(255, 248, 215, 0.3), 0 0 15px 7px rgba(255, 238, 195, 0.2); }
+            60% { box-shadow: 0 0 5px 2px rgba(255, 235, 190, 0.15), 0 0 8px 4px rgba(255, 225, 170, 0.05); }
+            70% { box-shadow: 0 0 10px 6px rgba(255, 255, 230, 0.5), 0 0 20px 10px rgba(255, 245, 210, 0.3); }
+            80% { box-shadow: 0 0 6px 3px rgba(255, 240, 200, 0.2), 0 0 10px 5px rgba(255, 230, 180, 0.1); }
+            90% { box-shadow: 0 0 7px 4px rgba(255, 245, 210, 0.25), 0 0 12px 6px rgba(255, 235, 190, 0.15); }
+            100% { box-shadow: 0 0 6px 3px rgba(255, 240, 200, 0.2), 0 0 10px 5px rgba(255, 230, 180, 0.1); }
         }
 
         .fire-glow {
@@ -62,48 +62,48 @@
         }
     </style>
 </head>
-<body class="bg-black text-white p-4 sm:p-6">
+<body class="bg-stone-950 text-stone-100 p-4 sm:p-6">
 
     <div class="w-full max-w-2xl mx-auto space-y-8">
         <!-- Sección del Conversor -->
-        <div class="bg-stone-950 rounded-2xl shadow-2xl p-8 fire-glow">
+        <div class="bg-stone-800 rounded-2xl shadow-2xl p-8 fire-glow">
             <div class="text-center">
-                <h1 class="text-3xl md:text-4xl font-bold text-orange-500">¿Fahren What? ¿Celsius Who?</h1>
+                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-48 mx-auto mb-2">
                 <p class="text-white mt-2">COCINA SIN CAGARLA.</p>
             </div>
 
             <div class="text-center h-28 flex flex-col justify-center items-center my-6">
                 <span id="status-emoji" class="text-6xl md:text-7xl status-emoji"></span>
-                <p id="status-text" class="text-lg text-orange-400 font-medium mt-2">Conversión de temperatura</p>
+                <p id="status-text" class="text-lg text-sky-300 font-medium mt-2">Conversión de temperatura</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div class="flex flex-col space-y-2">
-                    <label for="celsius" class="text-lg font-medium text-orange-400">Celsius (°C)</label>
+                    <label for="celsius" class="text-lg font-medium text-sky-300">Celsius (°C)</label>
                     <input type="number" id="celsius" placeholder="Ej: 74"
-                           class="p-4 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300">
+                           class="p-4 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-xl focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
                 </div>
                 <div class="flex flex-col space-y-2">
-                    <label for="fahrenheit" class="text-lg font-medium text-orange-400">Fahrenheit (°F)</label>
+                    <label for="fahrenheit" class="text-lg font-medium text-sky-300">Fahrenheit (°F)</label>
                     <input type="number" id="fahrenheit" placeholder="Ej: 165"
-                           class="p-4 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300">
+                           class="p-4 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-xl focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
                 </div>
             </div>
         </div>
 
         <!-- Sección de la Guía de Cocción -->
-        <div class="bg-stone-950 rounded-2xl shadow-2xl p-8 fire-glow">
-            <h2 class="text-2xl font-bold text-center text-orange-500 mb-4">Encuentra el punto ideal</h2>
+        <div class="bg-stone-800 rounded-2xl shadow-2xl p-8 fire-glow">
+            <h2 class="text-2xl font-bold text-center text-sky-400 mb-4">Encuentra el punto ideal</h2>
             <div class="mb-6">
                 <input type="search" id="search-guide" placeholder="🔍 Buscar corte (ej: Lomo, Salmón...)"
-                       class="w-full p-3 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300">
+                       class="w-full p-3 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-lg focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
             </div>
             <div id="cooking-guide" class="space-y-8"></div>
             
             <div id="web-search-container" class="text-center mt-6" style="display: none;">
                 <p class="text-stone-400 mb-3">No se encontraron resultados para "<span id="search-term-display" class="font-semibold"></span>".</p>
                 <a id="web-search-link" href="#" target="_blank" rel="noopener noreferrer"
-                   class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                   class="inline-block bg-sky-700 hover:bg-sky-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                     Buscar en Google
                 </a>
             </div>
@@ -209,7 +209,7 @@
                 section.className = 'guide-region-section';
                 
                 const title = document.createElement('h3');
-                title.className = 'text-xl font-semibold text-orange-400 mb-3';
+                title.className = 'text-xl font-semibold text-sky-300 mb-3';
                 title.textContent = region;
                 section.appendChild(title);
 
@@ -226,12 +226,12 @@
 
                     let contentHTML = `<div class="flex justify-between items-center mb-1"><span>${item.cut}</span>`;
                     if (item.doneness) {
-                        contentHTML += `<span class="font-mono text-lg text-orange-400">Puntos de Cocción</span></div>`;
+                        contentHTML += `<span class="font-mono text-lg text-sky-300">Puntos de Cocción</span></div>`;
                         item.doneness.forEach(d => {
-                            contentHTML += `<div class="flex justify-between items-center text-sm ml-4"><span>- ${d.level}</span><span class="font-mono">${d.tempC}°C <span class="text-orange-800">/</span> ${d.tempF}°F</span></div>`;
+                            contentHTML += `<div class="flex justify-between items-center text-sm ml-4"><span>- ${d.level}</span><span class="font-mono">${d.tempC}°C <span class="text-sky-600">/</span> ${d.tempF}°F</span></div>`;
                         });
                     } else {
-                        contentHTML += `<span class="font-mono text-lg">${item.tempC}°C <span class="text-orange-800">/</span> ${item.tempF}°F</span></div>`;
+                        contentHTML += `<span class="font-mono text-lg">${item.tempC}°C <span class="text-sky-600">/</span> ${item.tempF}°F</span></div>`;
                     }
                     listItem.innerHTML = contentHTML;
                     list.appendChild(listItem);
