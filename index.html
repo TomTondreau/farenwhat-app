@@ -69,11 +69,11 @@
 </head>
 <body class="bg-stone-950 text-stone-900 p-4 sm:p-6">
 
-    <div class="w-full max-w-2xl mx-auto space-y-8">
+    <div class="w-full max-w-2xl mx-auto space-y-0">
         <!-- Sección del Conversor -->
         <div class="bg-amber-50 rounded-2xl shadow-2xl p-8 fire-glow">
             <div class="text-center">
-                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-[320rem] mx-auto mb-0">
+                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-[640rem] mx-auto mb-0">
             </div>
 
             <div class="text-center flex flex-col justify-center items-center mt-0 mb-12">
@@ -187,7 +187,7 @@
 
             if (celsius === null || isNaN(celsius)) {
                 statusEmoji.textContent = '👨‍🍳';
-                fact = "¿Listo para cocinar? Ingresa la temperatura a consultar.";
+                fact = "¿Confundido?";
             } else if (celsius < 0) {
                 statusEmoji.textContent = '🥶';
                 fact = "¡Demasiado frío! Esto es para congelar, no para cocinar.";
