@@ -68,13 +68,13 @@
         <!-- Sección del Conversor -->
         <div class="bg-stone-950 rounded-2xl shadow-2xl p-8 fire-glow">
             <div class="text-center">
-                <h1 class="text-3xl md:text-4xl font-bold text-orange-500">¿FahrenWhat?</h1>
-                <p class="text-stone-400 mt-2">Cocina sin cagarla. Convierte temperaturas y encuentra el punto ideal de cocción.</p>
+                <h1 class="text-3xl md:text-4xl font-bold text-orange-500">¿Fahren What? ¿Celsius Who?</h1>
+                <p class="text-white mt-2">COCINA SIN CAGARLA.</p>
             </div>
 
             <div class="text-center h-28 flex flex-col justify-center items-center my-6">
                 <span id="status-emoji" class="text-6xl md:text-7xl status-emoji"></span>
-                <p id="status-text" class="text-lg text-orange-400 font-medium mt-2"></p>
+                <p id="status-text" class="text-lg text-orange-400 font-medium mt-2">Conversión de temperatura</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -93,7 +93,7 @@
 
         <!-- Sección de la Guía de Cocción -->
         <div class="bg-stone-950 rounded-2xl shadow-2xl p-8 fire-glow">
-            <h2 class="text-2xl font-bold text-center text-orange-500 mb-4">Guía de Cocción Interna</h2>
+            <h2 class="text-2xl font-bold text-center text-orange-500 mb-4">Encuentra el punto ideal.</h2>
             <div class="mb-6">
                 <input type="search" id="search-guide" placeholder="🔍 Buscar corte (ej: Lomo, Salmón...)"
                        class="w-full p-3 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300">
@@ -179,18 +179,18 @@
 
         function updateStatus(celsius) {
             const { statusEmoji, statusText } = elements;
+            // statusText.textContent is now static: "Conversión de temperatura"
             if (celsius === null || isNaN(celsius)) {
                 statusEmoji.textContent = '👨‍🍳';
-                statusText.textContent = 'Listo para cocinar';
                 return;
             }
-            if (celsius < 0) { statusEmoji.textContent = '🥶'; statusText.textContent = 'Congelado'; } 
-            else if (celsius <= 4) { statusEmoji.textContent = '🧊'; statusText.textContent = 'Refrigeración'; } 
-            else if (celsius < 60) { statusEmoji.textContent = '🤢'; statusText.textContent = 'Zona de Peligro'; } 
-            else if (celsius < 74) { statusEmoji.textContent = '😋'; statusText.textContent = 'Cocción Lenta'; } 
-            else if (celsius < 100) { statusEmoji.textContent = '👌'; statusText.textContent = 'Cocción Segura'; } 
-            else if (celsius < 150) { statusEmoji.textContent = '🥵'; statusText.textContent = 'Punto de Ebullición'; } 
-            else { statusEmoji.textContent = '🔥'; statusText.textContent = 'Horneado / Asado'; }
+            if (celsius < 0) { statusEmoji.textContent = '🥶'; } 
+            else if (celsius <= 4) { statusEmoji.textContent = '🧊'; } 
+            else if (celsius < 60) { statusEmoji.textContent = '🤢'; } 
+            else if (celsius < 74) { statusEmoji.textContent = '😋'; } 
+            else if (celsius < 100) { statusEmoji.textContent = '👌'; } 
+            else if (celsius < 150) { statusEmoji.textContent = '🥵'; } 
+            else { statusEmoji.textContent = '🔥'; }
         }
 
         function populateGuide() {
