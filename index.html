@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿¡FARENWHAT?!</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(-5%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+                transform: translateY(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+        .status-emoji {
+            animation: bounce 1.5s infinite;
+            transition: transform 0.5s ease;
+        }
+        .show-more-btn {
+            background-color: #78350f; /* orange-900 */
+            color: #fdba74; /* orange-300 */
+        }
+        .show-more-btn:hover {
+            background-color: #9a3412; /* orange-800 */
+        }
+    </style>
+</head>
+<body class="bg-black text-white p-4 sm:p-6">
+
+    <div class="w-full max-w-2xl mx-auto space-y-8">
+        <!-- Sección del Conversor -->
+        <div class="bg-stone-900 rounded-2xl shadow-2xl p-8">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-orange-500">¿¡FARENWHAT?!</h1>
+                <p class="text-stone-400 mt-2">Cocina sin cagarla. Convierte temperaturas y encuentra el punto ideal de cocción.</p>
+            </div>
+
+            <div class="text-center h-28 flex flex-col justify-center items-center my-6">
+                <span id="status-emoji" class="text-6xl md:text-7xl status-emoji"></span>
+                <p id="status-text" class="text-lg text-orange-400 font-medium mt-2"></p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="flex flex-col space-y-2">
+                    <label for="celsius" class="text-lg font-medium text-orange-400">Celsius (°C)</label>
+                    <input type="number" id="celsius" placeholder="Ej: 74"
+                           class="p-4 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300">
+                </div>
+                <div class="flex flex-col space-y-2">
+                    <label for="fahrenheit" class="text-lg font-medium text-orange-400">Fahrenheit (°F)</label>
+                    <input type="number" id="fahrenheit" placeholder="Ej: 165"
+                           class="p-4 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300">
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de la Guía de Cocción -->
+        <div class="bg-stone-900 rounded-2xl shadow-2xl p-8">
+            <h2 class="text-2xl font-bold text-center text-orange-500 mb-4">Guía de Cocción Interna</h2>
+            <div class="mb-6">
+                <input type="search" id="search-guide" placeholder="🔍 Buscar corte (ej: Lomo, Salmón...)"
+                       class="w-full p-3 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300">
+            </div>
+            <div id="cooking-guide" class="space-y-8"></div>
+            
+            <div id="web-search-container" class="text-center mt-6" style="display: none;">
+                <p class="text-stone-400 mb-3">No se encontraron resultados para "<span id="search-term-display" class="font-semibold"></span>".</p>
+                <a id="web-search-link" href="#" target="_blank" rel="noopener noreferrer"
+                   class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                    Buscar en Google
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const elements = {
+            celsiusInput: document.getElementById('celsius'),
+            fahrenheitInput: document.getElementById('fahrenheit'),
+            statusEmoji: document.getElementById('status-emoji'),
+            statusText: document.getElementById('status-text'),
+            cookingGuide: document.getElementById('cooking-guide'),
+            searchInput: document.getElementById('search-guide'),
+            webSearchContainer: document.getElementById('web-search-container'),
+            webSearchLink: document.getElementById('web-search-link'),
+            searchTermDisplay: document.getElementById('search-term-display')
+        };
+
+        const cookingData = [
+            { region: 'Vacuno / Res', cut: 'Filete / Lomo (Rare)', tempC: 52, tempF: 125 },
+            { region: 'Vacuno / Res', cut: 'Lomo Vetado (Medium Rare)', tempC: 55, tempF: 131 },
+            { region: 'Vacuno / Res', cut: 'Asado de Tira (Well Done)', tempC: 88, tempF: 190 },
+            { region: 'Vacuno / Res', cut: 'Punta de Ganso (Medium)', tempC: 60, tempF: 140 },
+            { region: 'Vacuno / Res', cut: 'Hamburguesas', tempC: 71, tempF: 160 },
+            { region: 'Vacuno / Res', cut: 'Brisket (BBQ)', tempC: 93, tempF: 200 },
+            { region: 'Vacuno / Res', cut: 'Vacío (Jugoso)', tempC: 60, tempF: 140 },
+            { region: 'Cerdo', cut: 'Costillar de Cerdo (BBQ)', tempC: 90, tempF: 195 },
+            { region: 'Cerdo', cut: 'Pulled Pork', tempC: 93, tempF: 200 },
+            { region: 'Cerdo', cut: 'Lomo de Cerdo', tempC: 63, tempF: 145 },
+            { region: 'Cerdo', cut: 'Chuletas de Cerdo', tempC: 63, tempF: 145 },
+            { region: 'Aves', cut: 'Pollo Entero', tempC: 74, tempF: 165 },
+            { region: 'Aves', cut: 'Pechuga de Pollo', tempC: 74, tempF: 165 },
+            { region: 'Aves', cut: 'Muslos de Pollo', tempC: 79, tempF: 175 },
+            { region: 'Aves', cut: 'Pavo (Pechuga)', tempC: 74, tempF: 165 },
+            { region: 'Cordero', cut: 'Pierna de Cordero (Medium)', tempC: 63, tempF: 145 },
+            { region: 'Cordero', cut: 'Chuletas de Cordero (Medium Rare)', tempC: 57, tempF: 135 },
+            { region: 'Pescado', cut: 'Salmón', tempC: 60, tempF: 140 },
+            { region: 'Pescado', cut: 'Atún (Sellado / Rare)', tempC: 49, tempF: 120 },
+            { region: 'Pescado', cut: 'Merluza / Corvina', tempC: 63, tempF: 145 },
+            { region: 'Proteínas Exóticas', cut: 'Carne de Cocodrilo', tempC: 74, tempF: 165 },
+            { region: 'Proteínas Exóticas', cut: 'Ancas de Rana', tempC: 74, tempF: 165 },
+            { region: 'Proteínas Exóticas', cut: 'Ciervo / Venado (Medium Rare)', tempC: 57, tempF: 135 }
+        ];
+
+        function celsiusToFahrenheit(celsius) { return (celsius * 9/5) + 32; }
+        function fahrenheitToCelsius(fahrenheit) { return (fahrenheit - 32) * 5/9; }
+
+        function updateStatus(celsius) {
+            const { statusEmoji, statusText } = elements;
+            if (celsius === null || isNaN(celsius)) {
+                statusEmoji.textContent = '👨‍🍳';
+                statusText.textContent = 'Listo para cocinar';
+                return;
+            }
+            if (celsius < 0) { statusEmoji.textContent = '🥶'; statusText.textContent = 'Congelado'; } 
+            else if (celsius <= 4) { statusEmoji.textContent = '🧊'; statusText.textContent = 'Refrigeración'; } 
+            else if (celsius < 60) { statusEmoji.textContent = '🤢'; statusText.textContent = 'Zona de Peligro'; } 
+            else if (celsius < 74) { statusEmoji.textContent = '😋'; statusText.textContent = 'Cocción Lenta'; } 
+            else if (celsius < 100) { statusEmoji.textContent = '👌'; statusText.textContent = 'Cocción Segura'; } 
+            else if (celsius < 150) { statusEmoji.textContent = '🥵'; statusText.textContent = 'Punto de Ebullición'; } 
+            else { statusEmoji.textContent = '🔥'; statusText.textContent = 'Horneado / Asado'; }
+        }
+
+        function populateGuide() {
+            const { cookingGuide } = elements;
+            const popularThreshold = 3;
+            cookingGuide.innerHTML = '';
+            const groupedByRegion = cookingData.reduce((acc, item) => {
+                acc[item.region] = acc[item.region] || [];
+                acc[item.region].push(item);
+                return acc;
+            }, {});
+
+            for (const region in groupedByRegion) {
+                const items = groupedByRegion[region];
+                const section = document.createElement('div');
+                section.className = 'guide-region-section';
+                
+                const title = document.createElement('h3');
+                title.className = 'text-xl font-semibold text-orange-400 mb-3';
+                title.textContent = region;
+                section.appendChild(title);
+
+                const list = document.createElement('ul');
+                list.className = 'space-y-2 text-stone-300';
+                
+                items.forEach((item, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'flex justify-between items-center bg-stone-800 p-3 rounded-lg';
+                    if (index >= popularThreshold) {
+                        listItem.style.display = 'none';
+                        listItem.classList.add('extra-item');
+                    }
+                    listItem.innerHTML = `<span>${item.cut}</span><span class="font-mono text-lg">${item.tempC}°C <span class="text-orange-800">/</span> ${item.tempF}°F</span>`;
+                    list.appendChild(listItem);
+                });
+
+                section.appendChild(list);
+
+                if (items.length > popularThreshold) {
+                    const button = document.createElement('button');
+                    button.textContent = 'Ver más...';
+                    button.className = 'show-more-btn w-full text-center p-2 mt-3 rounded-lg transition';
+                    button.onclick = (e) => {
+                        const listContainer = e.target.previousElementSibling;
+                        const extraItems = listContainer.querySelectorAll('.extra-item');
+                        extraItems.forEach(item => item.style.display = 'flex');
+                        e.target.style.display = 'none';
+                    };
+                    section.appendChild(button);
+                }
+                cookingGuide.appendChild(section);
+            }
+        }
+
+        function handleSearch() {
+            const { searchInput, cookingGuide, webSearchContainer, searchTermDisplay, webSearchLink } = elements;
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const sections = cookingGuide.querySelectorAll('.guide-region-section');
+            let totalVisibleItems = 0;
+
+            sections.forEach(section => {
+                const listItems = section.querySelectorAll('li');
+                let visibleItemsInSection = 0;
+
+                listItems.forEach(item => {
+                    const cutName = item.querySelector('span:first-child').textContent.toLowerCase();
+                    if (cutName.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                        visibleItemsInSection++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                const showMoreBtn = section.querySelector('.show-more-btn');
+                if (showMoreBtn) {
+                    showMoreBtn.style.display = 'none';
+                }
+
+                if (visibleItemsInSection > 0) {
+                    section.style.display = 'block';
+                    totalVisibleItems += visibleItemsInSection;
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            if (searchTerm === '') {
+                populateGuide();
+                webSearchContainer.style.display = 'none';
+            } else if (totalVisibleItems === 0) {
+                searchTermDisplay.textContent = searchInput.value;
+                webSearchLink.href = `https://www.google.com/search?q=temperatura+interna+de+coccion+${encodeURIComponent(searchInput.value)}`;
+                webSearchContainer.style.display = 'block';
+            } else {
+                webSearchContainer.style.display = 'none';
+            }
+        }
+
+        elements.celsiusInput.addEventListener('input', () => {
+            const cValue = parseFloat(elements.celsiusInput.value);
+            if (!isNaN(cValue)) { elements.fahrenheitInput.value = celsiusToFahrenheit(cValue).toFixed(1); }
+            else { elements.fahrenheitInput.value = ''; }
+            updateStatus(isNaN(cValue) ? null : cValue);
+        });
+
+        elements.fahrenheitInput.addEventListener('input', () => {
+            const fValue = parseFloat(elements.fahrenheitInput.value);
+            if (!isNaN(fValue)) {
+                const cValue = fahrenheitToCelsius(fValue);
+                elements.celsiusInput.value = cValue.toFixed(1);
+                updateStatus(cValue);
+            } else {
+                elements.celsiusInput.value = '';
+                updateStatus(null);
+            }
+        });
+
+        elements.searchInput.addEventListener('input', handleSearch);
+
+        updateStatus(null);
+        populateGuide();
+
+    </script>
+
+</body>
+</html>
