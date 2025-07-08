@@ -73,12 +73,13 @@
         <!-- Sección del Conversor -->
         <div class="bg-amber-50 rounded-2xl shadow-2xl p-8 fire-glow">
             <div class="text-center">
-                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-[80rem] mx-auto mb-2">
+                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-[160rem] mx-auto mb-2">
             </div>
 
             <div class="text-center h-28 flex flex-col justify-center items-center my-6">
+                <p class="text-lg font-medium" style="color: #274747;">Conversión de medición de temperatura</p>
                 <span id="status-emoji" class="text-4xl md:text-5xl status-emoji"></span>
-                <p id="status-text" class="text-lg style="color: #274747;" font-medium mt-2">Conversión de temperatura</p>
+                <p id="temperature-fact" class="text-sm mt-2" style="color: #274747;"></p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -119,7 +120,7 @@
             celsiusInput: document.getElementById('celsius'),
             fahrenheitInput: document.getElementById('fahrenheit'),
             statusEmoji: document.getElementById('status-emoji'),
-            statusText: document.getElementById('status-text'),
+            temperatureFact: document.getElementById('temperature-fact'),
             cookingGuide: document.getElementById('cooking-guide'),
             searchInput: document.getElementById('search-guide'),
             webSearchContainer: document.getElementById('web-search-container'),
@@ -182,19 +183,35 @@
         function fahrenheitToCelsius(fahrenheit) { return (fahrenheit - 32) * 5/9; }
 
         function updateStatus(celsius) {
-            const { statusEmoji, statusText } = elements;
-            // statusText.textContent is now static: "Conversión de temperatura"
+            const { statusEmoji, temperatureFact } = elements;
+            let fact = "";
+
             if (celsius === null || isNaN(celsius)) {
                 statusEmoji.textContent = '👨‍🍳';
-                return;
+                fact = "¡Listo para cocinar! Ingresa una temperatura.";
+            } else if (celsius < 0) {
+                statusEmoji.textContent = '🥶';
+                fact = "¡Demasiado frío! Esto es para congelar, no para cocinar.";
+            } else if (celsius <= 4) {
+                statusEmoji.textContent = '🧊';
+                fact = "Temperatura de refrigeración. Ideal para mantener fresco.";
+            } else if (celsius < 60) {
+                statusEmoji.textContent = '🤢';
+                fact = "¡Peligro! Zona de riesgo. No cocines a esta temperatura.";
+            } else if (celsius < 74) {
+                statusEmoji.textContent = '😋';
+                fact = "¡Perfecto! Cocción a baja temperatura para jugosidad.";
+            } else if (celsius < 100) {
+                statusEmoji.textContent = '👌';
+                fact = "Temperatura ideal para la mayoría de las cocciones.";
+            } else if (celsius < 150) {
+                statusEmoji.textContent = '🥵';
+                fact = "¡Caliente! Cuidado con la sobrecocción.";
+            } else {
+                statusEmoji.textContent = '🔥';
+                fact = "¡Fuego! Temperatura para sellar o asar a alta intensidad.";
             }
-            if (celsius < 0) { statusEmoji.textContent = '🥶'; } 
-            else if (celsius <= 4) { statusEmoji.textContent = '🧊'; } 
-            else if (celsius < 60) { statusEmoji.textContent = '🤢'; } 
-            else if (celsius < 74) { statusEmoji.textContent = '😋'; } 
-            else if (celsius < 100) { statusEmoji.textContent = '👌'; } 
-            else if (celsius < 150) { statusEmoji.textContent = '🥵'; } 
-            else { statusEmoji.textContent = '🔥'; }
+            temperatureFact.textContent = fact;
         }
 
         function populateGuide() {
