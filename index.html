@@ -66,42 +66,41 @@
 
     <div class="w-full max-w-2xl mx-auto space-y-8">
         <!-- Sección del Conversor -->
-        <div class="bg-stone-800 rounded-2xl shadow-2xl p-8 fire-glow">
+        <div class="bg-amber-50 rounded-2xl shadow-2xl p-8 fire-glow">
             <div class="text-center">
-                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-48 mx-auto mb-2">
-                <p class="text-white mt-2">COCINA SIN CAGARLA.</p>
+                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-full mx-auto mb-2">
             </div>
 
             <div class="text-center h-28 flex flex-col justify-center items-center my-6">
-                <span id="status-emoji" class="text-6xl md:text-7xl status-emoji"></span>
-                <p id="status-text" class="text-lg text-sky-300 font-medium mt-2">Conversión de temperatura</p>
+                <span id="status-emoji" class="text-4xl md:text-5xl status-emoji"></span>
+                <p id="status-text" class="text-lg style="color: #274747;" font-medium mt-2">Conversión de temperatura</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div class="flex flex-col space-y-2">
-                    <label for="celsius" class="text-lg font-medium text-sky-300">Celsius (°C)</label>
+                    <label for="celsius" class="text-lg font-medium style="color: #274747;"">Celsius (°C)</label>
                     <input type="number" id="celsius" placeholder="Ej: 74"
-                           class="p-4 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-xl focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
+                           class="p-4 bg-white border-2 border-stone-300 rounded-lg text-stone-900 text-xl focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
                 </div>
                 <div class="flex flex-col space-y-2">
-                    <label for="fahrenheit" class="text-lg font-medium text-sky-300">Fahrenheit (°F)</label>
+                    <label for="fahrenheit" class="text-lg font-medium style="color: #274747;"">Fahrenheit (°F)</label>
                     <input type="number" id="fahrenheit" placeholder="Ej: 165"
-                           class="p-4 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-xl focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
+                           class="p-4 bg-white border-2 border-stone-300 rounded-lg text-stone-900 text-xl focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
                 </div>
             </div>
         </div>
 
         <!-- Sección de la Guía de Cocción -->
-        <div class="bg-stone-800 rounded-2xl shadow-2xl p-8 fire-glow">
-            <h2 class="text-2xl font-bold text-center text-sky-400 mb-4">Encuentra el punto ideal</h2>
+        <div class="bg-amber-50 rounded-2xl shadow-2xl p-8 fire-glow">
+            <h2 class="text-2xl font-bold text-center style="color: #bc6536;" mb-4">Encuentra el punto ideal</h2>
             <div class="mb-6">
                 <input type="search" id="search-guide" placeholder="🔍 Buscar corte (ej: Lomo, Salmón...)"
-                       class="w-full p-3 bg-stone-800 border-2 border-stone-700 rounded-lg text-white text-lg focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
+                       class="w-full p-3 bg-white border-2 border-stone-300 rounded-lg text-stone-900 text-lg focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
             </div>
             <div id="cooking-guide" class="space-y-8"></div>
             
             <div id="web-search-container" class="text-center mt-6" style="display: none;">
-                <p class="text-stone-400 mb-3">No se encontraron resultados para "<span id="search-term-display" class="font-semibold"></span>".</p>
+                <p class="text-stone-900 mb-3">No se encontraron resultados para "<span id="search-term-display" class="font-semibold"></span>".</p>
                 <a id="web-search-link" href="#" target="_blank" rel="noopener noreferrer"
                    class="inline-block bg-sky-700 hover:bg-sky-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                     Buscar en Google
@@ -209,16 +208,16 @@
                 section.className = 'guide-region-section';
                 
                 const title = document.createElement('h3');
-                title.className = 'text-xl font-semibold text-sky-300 mb-3';
+                title.className = 'text-xl font-semibold style="color: #274747;" mb-3';
                 title.textContent = region;
                 section.appendChild(title);
 
                 const list = document.createElement('ul');
-                list.className = 'space-y-2 text-stone-300';
+                list.className = 'space-y-2 text-stone-900';
                 
                 items.forEach((item, index) => {
                     const listItem = document.createElement('li');
-                    listItem.className = 'flex flex-col bg-stone-800 p-3 rounded-lg';
+                    listItem.className = 'flex flex-col bg-white p-3 rounded-lg';
                     if (index >= popularThreshold) {
                         listItem.style.display = 'none';
                         listItem.classList.add('extra-item');
@@ -226,7 +225,7 @@
 
                     let contentHTML = `<div class="flex justify-between items-center mb-1"><span>${item.cut}</span>`;
                     if (item.doneness) {
-                        contentHTML += `<span class="font-mono text-lg text-sky-300">Puntos de Cocción</span></div>`;
+                        contentHTML += `<span class="font-mono text-lg style="color: #274747;"">Puntos de Cocción</span></div>`;
                         item.doneness.forEach(d => {
                             contentHTML += `<div class="flex justify-between items-center text-sm ml-4"><span>- ${d.level}</span><span class="font-mono">${d.tempC}°C <span class="text-sky-600">/</span> ${d.tempF}°F</span></div>`;
                         });
