@@ -76,10 +76,9 @@
                 <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-[160rem] mx-auto mb-2">
             </div>
 
-            <div class="text-center h-28 flex flex-col justify-center items-center my-6">
-                <p class="text-lg font-medium" style="color: #274747;">Conversión de medición de temperatura</p>
-                <span id="status-emoji" class="text-4xl md:text-5xl status-emoji"></span>
-                <p id="temperature-fact" class="text-sm mt-2" style="color: #274747;"></p>
+            <div class="text-center flex flex-col justify-center items-center mt-2 mb-4">
+                <span id="status-emoji" class="text-6xl md:text-7xl status-emoji"></span>
+                <p id="temperature-fact" class="text-base mt-2" style="color: #274747;"></p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -188,7 +187,7 @@
 
             if (celsius === null || isNaN(celsius)) {
                 statusEmoji.textContent = '👨‍🍳';
-                fact = "¡Listo para cocinar! Ingresa una temperatura.";
+                fact = "¿Listo para cocinar? Ingresa la temperatura a consultar.";
             } else if (celsius < 0) {
                 statusEmoji.textContent = '🥶';
                 fact = "¡Demasiado frío! Esto es para congelar, no para cocinar.";
