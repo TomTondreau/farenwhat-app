@@ -43,17 +43,22 @@
 
         /* Animación de fuego para el fondo */
         @keyframes fire-flicker {
-            0% { box-shadow: 0 0 6px 3px rgba(255, 240, 200, 0.2), 0 0 10px 5px rgba(255, 230, 180, 0.1); }
-            10% { box-shadow: 0 0 7px 4px rgba(255, 245, 210, 0.25), 0 0 12px 6px rgba(255, 235, 190, 0.15); }
-            20% { box-shadow: 0 0 5px 2px rgba(255, 235, 190, 0.15), 0 0 8px 4px rgba(255, 225, 170, 0.05); }
-            30% { box-shadow: 0 0 9px 5px rgba(255, 250, 220, 0.4), 0 0 18px 9px rgba(255, 240, 200, 0.25); }
-            40% { box-shadow: 0 0 6px 3px rgba(255, 240, 200, 0.2), 0 0 10px 5px rgba(255, 230, 180, 0.1); }
-            50% { box-shadow: 0 0 8px 4px rgba(255, 248, 215, 0.3), 0 0 15px 7px rgba(255, 238, 195, 0.2); }
-            60% { box-shadow: 0 0 5px 2px rgba(255, 235, 190, 0.15), 0 0 8px 4px rgba(255, 225, 170, 0.05); }
-            70% { box-shadow: 0 0 10px 6px rgba(255, 255, 230, 0.5), 0 0 20px 10px rgba(255, 245, 210, 0.3); }
-            80% { box-shadow: 0 0 6px 3px rgba(255, 240, 200, 0.2), 0 0 10px 5px rgba(255, 230, 180, 0.1); }
-            90% { box-shadow: 0 0 7px 4px rgba(255, 245, 210, 0.25), 0 0 12px 6px rgba(255, 235, 190, 0.15); }
-            100% { box-shadow: 0 0 6px 3px rgba(255, 240, 200, 0.2), 0 0 10px 5px rgba(255, 230, 180, 0.1); }
+            0% { box-shadow: 0 0 8px 4px rgba(255, 120, 0, 0.3), 0 0 15px 7px rgba(255, 70, 0, 0.2); }
+            10% { box-shadow: 0 0 9px 5px rgba(255, 130, 0, 0.4), 0 0 18px 9px rgba(255, 80, 0, 0.25); }
+            20% { box-shadow: 0 0 7px 3px rgba(255, 110, 0, 0.25), 0 0 12px 6px rgba(255, 60, 0, 0.15); }
+            30% { box-shadow: 0 0 10px 6px rgba(255, 140, 0, 0.5), 0 0 20px 10px rgba(255, 90, 0, 0.3); }
+            40% { box-shadow: 0 0 8px 4px rgba(255, 120, 0, 0.3), 0 0 15px 7px rgba(255, 70, 0, 0.2); }
+            50% { box-shadow: 0 0 11px 7px rgba(255, 150, 0, 0.6), 0 0 22px 11px rgba(255, 100, 0, 0.4); }
+            60% { box-shadow: 0 0 7px 3px rgba(255, 110, 0, 0.25), 0 0 12px 6px rgba(255, 60, 0, 0.15); }
+            70% { box-shadow: 0 0 9px 5px rgba(255, 130, 0, 0.4), 0 0 18px 9px rgba(255, 80, 0, 0.25); }
+            80% { box-shadow: 0 0 8px 4px rgba(255, 120, 0, 0.3), 0 0 15px 7px rgba(255, 70, 0, 0.2); }
+            90% { box-shadow: 0 0 10px 6px rgba(255, 140, 0, 0.5), 0 0 20px 10px rgba(255, 90, 0, 0.3); }
+            100% { box-shadow: 0 0 8px 4px rgba(255, 120, 0, 0.3), 0 0 15px 7px rgba(255, 70, 0, 0.2); }
+        }
+
+        .fire-glow {
+            position: relative;
+            animation: fire-flicker 8s infinite alternate; /* Animación de fuego más lenta y errática */
         }
 
         .fire-glow {
@@ -68,7 +73,7 @@
         <!-- Sección del Conversor -->
         <div class="bg-amber-50 rounded-2xl shadow-2xl p-8 fire-glow">
             <div class="text-center">
-                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-full mx-auto mb-2">
+                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-[40rem] mx-auto mb-2">
             </div>
 
             <div class="text-center h-28 flex flex-col justify-center items-center my-6">
