@@ -16,7 +16,7 @@
         <!-- SECCIÓN DEL CONVERSOR -->
         <div class="te-panel">
             <div class="te-status-screen">
-                <div id="cooking-indicator" class="te-cooking-indicator"></div>
+                <img id="meat-illustration" class="te-meat-illustration" src="" alt="Ilustración de Carne">
                 <p id="temperature-fact" class="te-status-text"></p>
             </div>
 
@@ -53,7 +53,7 @@
         const elements = {
             celsiusInput: document.getElementById('celsius'),
             fahrenheitInput: document.getElementById('fahrenheit'),
-            cookingIndicator: document.getElementById('cooking-indicator'),
+            meatIllustration: document.getElementById('meat-illustration'),
             temperatureFact: document.getElementById('temperature-fact'),
             cookingGuide: document.getElementById('cooking-guide'),
             searchInput: document.getElementById('search-guide'),
@@ -117,50 +117,41 @@
         function fahrenheitToCelsius(fahrenheit) { return (fahrenheit - 32) * 5/9; }
 
         function updateStatus(celsius) {
-            const { cookingIndicator, temperatureFact } = elements;
+            const { meatIllustration, temperatureFact } = elements;
             let fact = "";
-            let indicatorColor = "#ccc"; // Default grey
-            let indicatorText = "";
+            let imageSrc = "";
 
             if (celsius === null || isNaN(celsius)) {
-                indicatorText = "...";
-                fact = "ESPERANDO.";
+                imageSrc = ""; // No image for initial state
+                fact = "ESPERANDO ENTRADA.";
             } else if (celsius < 0) {
-                indicatorColor = "#00aaff";
-                indicatorText = "--";
-                fact = "FRÍO.";
+                imageSrc = ""; // No image for cold
+                fact = "DEMASIADO FRÍO.";
             } else if (celsius <= 4) {
-                indicatorColor = "#00aaff";
-                indicatorText = "--";
-                fact = "REFRIGERAR.";
+                imageSrc = ""; // No image for cold
+                fact = "REFRIGERACIÓN.";
             } else if (celsius < 60) {
-                indicatorColor = "#ffcc00";
-                indicatorText = "!";
-                fact = "RIESGO.";
+                imageSrc = ""; // No image for caution
+                fact = "ZONA DE RIESGO.";
             } else if (celsius < 74) {
-                indicatorColor = "#00ff00";
-                indicatorText = "OK";
-                fact = "PERFECTO.";
+                imageSrc = ""; // No image for perfect
+                fact = "COCCIÓN PERFECTA.";
             } else if (celsius < 100) {
-                indicatorColor = "#ff6600";
-                indicatorText = "++";
-                fact = "ALTA.";
+                imageSrc = ""; // No image for hot
+                fact = "TEMPERATURA ALTA.";
             } else if (celsius < 150) {
-                indicatorColor = "#ff0000";
-                indicatorText = "!!";
-                fact = "MUY ALTA!";
+                imageSrc = ""; // No image for very hot
+                fact = "MUY CALIENTE!";
             } else {
-                indicatorColor = "#8b0000";
-                indicatorText = "!!!";
-                fact = "EXTREMA!";
+                imageSrc = ""; // No image for extreme
+                fact = "EXTREMO!";
             }
-            cookingIndicator.style.backgroundColor = indicatorColor;
-            cookingIndicator.textContent = indicatorText;
+            meatIllustration.src = imageSrc;
             temperatureFact.textContent = fact;
         }
 
         function populateGuide() {
-            const { cookingGuide } = elements;
+            const { cookingGuide, meatIllustration, temperatureFact } = elements;
             const popularThreshold = 3;
             cookingGuide.innerHTML = '';
             const groupedByRegion = cookingData.reduce((acc, item) => {
@@ -201,6 +192,27 @@
                     }
                     listItem.innerHTML = contentHTML;
                     list.appendChild(listItem);
+
+                    // Add click listener to update image
+                    listItem.addEventListener('click', () => {
+                        let imagePath = '';
+                        let factText = '';
+                        if (item.region === 'VACUNO') {
+                            imagePath = 'images/imagen-imagen-3.0-generate-002-20250714-235348-0.png';
+                            factText = `TEMPERATURA PARA ${item.cut}.`;
+                        } else if (item.region === 'CERDO') {
+                            imagePath = 'images/imagen-imagen-3.0-generate-002-20250714-235400-0.png';
+                            factText = `TEMPERATURA PARA ${item.cut}.`;
+                        } else {
+                            imagePath = ''; // Default or placeholder
+                            factText = `TEMPERATURA PARA ${item.cut}.`;
+                        }
+                        meatIllustration.classList.remove('fadeIn'); // Reset animation
+                        void meatIllustration.offsetWidth; // Trigger reflow
+                        meatIllustration.src = imagePath;
+                        meatIllustration.classList.add('fadeIn');
+                        temperatureFact.textContent = factText;
+                    });
                 });
 
                 section.appendChild(list);
