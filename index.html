@@ -63,52 +63,52 @@
         };
 
         const cookingData = [
-            { region: 'VACUNO / RES', cut: 'FILETE / LOMO', doneness: [
+            { region: 'VACUNO', cut: 'FILETE / LOMO', doneness: [
                 { level: 'RARE', tempC: 52, tempF: 125 },
-                { level: 'MEDIUM RARE', tempC: 55, tempF: 131 },
+                { level: 'M. RARE', tempC: 55, tempF: 131 },
                 { level: 'MEDIUM', tempC: 60, tempF: 140 },
-                { level: 'MEDIUM WELL', tempC: 65, tempF: 150 },
-                { level: 'WELL DONE', tempC: 71, tempF: 160 }
+                { level: 'M. WELL', tempC: 65, tempF: 150 },
+                { level: 'WELL', tempC: 71, tempF: 160 }
             ]},
-            { region: 'VACUNO / RES', cut: 'LOMO VETADO', doneness: [
-                { level: 'MEDIUM RARE', tempC: 55, tempF: 131 },
+            { region: 'VACUNO', cut: 'LOMO VETADO', doneness: [
+                { level: 'M. RARE', tempC: 55, tempF: 131 },
                 { level: 'MEDIUM', tempC: 60, tempF: 140 },
-                { level: 'WELL DONE', tempC: 71, tempF: 160 }
+                { level: 'WELL', tempC: 71, tempF: 160 }
             ]},
-            { region: 'VACUNO / RES', cut: 'ASADO DE TIRA', tempC: 88, tempF: 190 },
-            { region: 'VACUNO / RES', cut: 'PUNTA DE GANSO', doneness: [
+            { region: 'VACUNO', cut: 'ASADO DE TIRA', tempC: 88, tempF: 190 },
+            { region: 'VACUNO', cut: 'PUNTA DE GANSO', doneness: [
                 { level: 'MEDIUM', tempC: 60, tempF: 140 },
-                { level: 'WELL DONE', tempC: 71, tempF: 160 }
+                { level: 'WELL', tempC: 71, tempF: 160 }
             ]},
-            { region: 'VACUNO / RES', cut: 'HAMBURGUESAS', tempC: 71, tempF: 160 },
-            { region: 'VACUNO / RES', cut: 'BRISKET (BBQ)', tempC: 93, tempF: 200 },
-            { region: 'VACUNO / RES', cut: 'VACÍO', doneness: [
+            { region: 'VACUNO', cut: 'HAMBURGUESAS', tempC: 71, tempF: 160 },
+            { region: 'VACUNO', cut: 'BRISKET (BBQ)', tempC: 93, tempF: 200 },
+            { region: 'VACUNO', cut: 'VACÍO', doneness: [
                 { level: 'JUGOSO', tempC: 60, tempF: 140 },
                 { level: 'COCIDO', tempC: 71, tempF: 160 }
             ]},
-            { region: 'CERDO', cut: 'COSTILLAR DE CERDO (BBQ)', tempC: 90, tempF: 195 },
+            { region: 'CERDO', cut: 'COSTILLAR (BBQ)', tempC: 90, tempF: 195 },
             { region: 'CERDO', cut: 'PULLED PORK', tempC: 93, tempF: 200 },
-            { region: 'CERDO', cut: 'LOMO DE CERDO', tempC: 63, tempF: 145 },
-            { region: 'CERDO', cut: 'CHULETAS DE CERDO', tempC: 63, tempF: 145 },
+            { region: 'CERDO', cut: 'LOMO', tempC: 63, tempF: 145 },
+            { region: 'CERDO', cut: 'CHULETAS', tempC: 63, tempF: 145 },
             { region: 'AVES', cut: 'POLLO ENTERO', tempC: 74, tempF: 165 },
-            { region: 'AVES', cut: 'PECHUGA DE POLLO', tempC: 74, tempF: 165 },
-            { region: 'AVES', cut: 'MUSLOS DE POLLO', tempC: 79, tempF: 175 },
+            { region: 'AVES', cut: 'PECHUGA', tempC: 74, tempF: 165 },
+            { region: 'AVES', cut: 'MUSLOS', tempC: 79, tempF: 175 },
             { region: 'AVES', cut: 'PAVO (PECHUGA)', tempC: 74, tempF: 165 },
-            { region: 'CORDERO', cut: 'PIERNA DE CORDERO', doneness: [
+            { region: 'CORDERO', cut: 'PIERNA', doneness: [
                 { level: 'MEDIUM', tempC: 63, tempF: 145 },
-                { level: 'WELL DONE', tempC: 71, tempF: 160 }
+                { level: 'WELL', tempC: 71, tempF: 160 }
             ]},
-            { region: 'CORDERO', cut: 'CHULETAS DE CORDERO', doneness: [
-                { level: 'MEDIUM RARE', tempC: 57, tempF: 135 },
+            { region: 'CORDERO', cut: 'CHULETAS', doneness: [
+                { level: 'M. RARE', tempC: 57, tempF: 135 },
                 { level: 'MEDIUM', tempC: 63, tempF: 145 }
             ]},
             { region: 'PESCADO', cut: 'SALMÓN', tempC: 60, tempF: 140 },
             { region: 'PESCADO', cut: 'ATÚN (SELLADO)', tempC: 49, tempF: 120 },
             { region: 'PESCADO', cut: 'MERLUZA / CORVINA', tempC: 63, tempF: 145 },
-            { region: 'PROTEÍNAS EXÓTICAS', cut: 'CARNE DE COCODRILO', tempC: 74, tempF: 165 },
-            { region: 'PROTEÍNAS EXÓTICAS', cut: 'ANCAS DE RANA', tempC: 74, tempF: 165 },
-            { region: 'PROTEÍNAS EXÓTICAS', cut: 'CIERVO / VENADO', doneness: [
-                { level: 'MEDIUM RARE', tempC: 57, tempF: 135 },
+            { region: 'EXÓTICAS', cut: 'COCODRILO', tempC: 74, tempF: 165 },
+            { region: 'EXÓTICAS', cut: 'ANCAS DE RANA', tempC: 74, tempF: 165 },
+            { region: 'EXÓTICAS', cut: 'CIERVO / VENADO', doneness: [
+                { level: 'M. RARE', tempC: 57, tempF: 135 },
                 { level: 'MEDIUM', tempC: 63, tempF: 145 }
             ]}
         ];
@@ -124,35 +124,35 @@
 
             if (celsius === null || isNaN(celsius)) {
                 indicatorText = "...";
-                fact = "ESPERANDO ENTRADA.";
+                fact = "ESPERANDO.";
             } else if (celsius < 0) {
-                indicatorColor = "#00aaff"; // Blue for cold
+                indicatorColor = "#00aaff";
                 indicatorText = "--";
-                fact = "DEMASIADO FRÍO.";
+                fact = "FRÍO.";
             } else if (celsius <= 4) {
-                indicatorColor = "#00aaff"; // Blue for cold
+                indicatorColor = "#00aaff";
                 indicatorText = "--";
-                fact = "REFRIGERACIÓN.";
+                fact = "REFRIGERAR.";
             } else if (celsius < 60) {
-                indicatorColor = "#ffcc00"; // Yellow for caution
+                indicatorColor = "#ffcc00";
                 indicatorText = "!";
-                fact = "ZONA DE RIESGO.";
+                fact = "RIESGO.";
             } else if (celsius < 74) {
-                indicatorColor = "#00ff00"; // Green for perfect
+                indicatorColor = "#00ff00";
                 indicatorText = "OK";
-                fact = "COCCIÓN PERFECTA.";
+                fact = "PERFECTO.";
             } else if (celsius < 100) {
-                indicatorColor = "#ff6600"; // Orange for hot
+                indicatorColor = "#ff6600";
                 indicatorText = "++";
-                fact = "TEMPERATURA ALTA.";
+                fact = "ALTA.";
             } else if (celsius < 150) {
-                indicatorColor = "#ff0000"; // Red for very hot
+                indicatorColor = "#ff0000";
                 indicatorText = "!!";
-                fact = "MUY CALIENTE!";
+                fact = "MUY ALTA!";
             } else {
-                indicatorColor = "#8b0000"; // Dark red for extreme
+                indicatorColor = "#8b0000";
                 indicatorText = "!!!";
-                fact = "EXTREMO!";
+                fact = "EXTREMA!";
             }
             cookingIndicator.style.backgroundColor = indicatorColor;
             cookingIndicator.textContent = indicatorText;
