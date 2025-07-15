@@ -4,110 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Fahren What? ¿Celsius Who?</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #171717; /* neutral-900 */
-            color: #fff;
-        }
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(-5%);
-                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-            }
-            50% {
-                transform: translateY(0);
-                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-            }
-        }
-        .status-emoji {
-            animation: bounce 1.5s infinite;
-            transition: transform 0.5s ease;
-        }
-        .show-more-btn {
-            background-color: #4A3728; /* custom brown */
-            color: #F5F5DC; /* custom light cream */
-        }
-        .show-more-btn:hover {
-            background-color: #5C4B3C; /* custom darker brown */
-        }
-
-        /* Animación de fuego para el fondo */
-        @keyframes fire-flicker {
-            0% { box-shadow: 0 0 8px 4px rgba(255, 120, 0, 0.3), 0 0 15px 7px rgba(255, 70, 0, 0.2); }
-            10% { box-shadow: 0 0 9px 5px rgba(255, 130, 0, 0.4), 0 0 18px 9px rgba(255, 80, 0, 0.25); }
-            20% { box-shadow: 0 0 7px 3px rgba(255, 110, 0, 0.25), 0 0 12px 6px rgba(255, 60, 0, 0.15); }
-            30% { box-shadow: 0 0 10px 6px rgba(255, 140, 0, 0.5), 0 0 20px 10px rgba(255, 90, 0, 0.3); }
-            40% { box-shadow: 0 0 8px 4px rgba(255, 120, 0, 0.3), 0 0 15px 7px rgba(255, 70, 0, 0.2); }
-            50% { box-shadow: 0 0 11px 7px rgba(255, 150, 0, 0.6), 0 0 22px 11px rgba(255, 100, 0, 0.4); }
-            60% { box-shadow: 0 0 7px 3px rgba(255, 110, 0, 0.25), 0 0 12px 6px rgba(255, 60, 0, 0.15); }
-            70% { box-shadow: 0 0 9px 5px rgba(255, 130, 0, 0.4), 0 0 18px 9px rgba(255, 80, 0, 0.25); }
-            80% { box-shadow: 0 0 8px 4px rgba(255, 120, 0, 0.3), 0 0 15px 7px rgba(255, 70, 0, 0.2); }
-            90% { box-shadow: 0 0 10px 6px rgba(255, 140, 0, 0.5), 0 0 20px 10px rgba(255, 90, 0, 0.3); }
-            100% { box-shadow: 0 0 8px 4px rgba(255, 120, 0, 0.3), 0 0 15px 7px rgba(255, 70, 0, 0.2); }
-        }
-
-        .fire-glow {
-            position: relative;
-            animation: fire-flicker 8s infinite alternate; /* Animación de fuego más lenta y errática */
-        }
-
-        .fire-glow {
-            position: relative;
-            animation: fire-flicker 6s infinite alternate; /* Animación de fuego más lenta */
-        }
-    </style>
+    <link rel="stylesheet" href="winamp.css">
 </head>
-<body class="bg-stone-950 text-stone-900 p-4 sm:p-6">
+<body>
 
-    <div class="w-full max-w-2xl mx-auto space-y-0">
+    <div class="winamp-container">
+        <div class="winamp-header">
+            <span class="title">Fahren What?</span>
+            <span>_ □ X</span>
+        </div>
+
         <!-- Sección del Conversor -->
-        <div class="bg-amber-50 rounded-2xl shadow-2xl p-8 fire-glow">
+        <div class="winamp-section">
             <div class="text-center">
-                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="w-full mx-auto mb-2">
+                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="winamp-logo">
             </div>
 
-            <div class="text-center flex flex-col justify-center items-center mt-2 mb-12">
-                <span id="status-emoji" class="text-6xl md:text-7xl status-emoji"></span>
-                <p id="temperature-fact" class="text-base mt-2" style="color: #274747;"></p>
+            <div class="winamp-status">
+                <span id="status-emoji" class="winamp-status-emoji"></span>
+                <p id="temperature-fact" class="winamp-fact-text"></p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="flex flex-col space-y-2">
-                    <label for="celsius" class="text-lg font-medium style="color: #274747;"">Celsius (°C)</label>
-                    <input type="number" id="celsius" placeholder="Ej: 74"
-                           class="p-4 bg-white border-2 border-stone-300 rounded-lg text-stone-900 text-xl focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
+            <div class="winamp-converter-grid">
+                <div class="winamp-input-group">
+                    <label for="celsius" class="winamp-label">Celsius (°C)</label>
+                    <input type="number" id="celsius" placeholder="Ej: 74" class="winamp-input">
                 </div>
-                <div class="flex flex-col space-y-2">
-                    <label for="fahrenheit" class="text-lg font-medium style="color: #274747;"">Fahrenheit (°F)</label>
-                    <input type="number" id="fahrenheit" placeholder="Ej: 165"
-                           class="p-4 bg-white border-2 border-stone-300 rounded-lg text-stone-900 text-xl focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
+                <div class="winamp-input-group">
+                    <label for="fahrenheit" class="winamp-label">Fahrenheit (°F)</label>
+                    <input type="number" id="fahrenheit" placeholder="Ej: 165" class="winamp-input">
                 </div>
             </div>
         </div>
 
         <!-- Sección de la Guía de Cocción -->
-        <div class="bg-amber-50 rounded-2xl shadow-2xl p-8 fire-glow">
-            <h2 class="text-2xl font-bold text-center style="color: #bc6536;" mb-4">Encuentra el punto ideal</h2>
-            <div class="mb-6">
-                <input type="search" id="search-guide" placeholder="🔍 Buscar corte (ej: Lomo, Salmón...)"
-                       class="w-full p-3 bg-white border-2 border-stone-300 rounded-lg text-stone-900 text-lg focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition duration-300">
+        <div class="winamp-section">
+            <h2 class="winamp-section-title">Encuentra el punto ideal</h2>
+            <div class="winamp-search-group">
+                <input type="search" id="search-guide" placeholder="🔍 Buscar corte (ej: Lomo, Salmón...)" class="winamp-search-input">
             </div>
-            <div id="cooking-guide" class="space-y-8"></div>
+            <div id="cooking-guide" class="winamp-cooking-guide"></div>
             
-            <div id="web-search-container" class="text-center mt-6" style="display: none;">
-                <p class="text-stone-900 mb-3">No se encontraron resultados para "<span id="search-term-display" class="font-semibold"></span>".</p>
-                <a id="web-search-link" href="#" target="_blank" rel="noopener noreferrer"
-                   class="inline-block bg-sky-700 hover:bg-sky-800 text-stone-900 font-bold py-2 px-4 rounded-lg transition duration-300">
+            <div id="web-search-container" class="web-search-container" style="display: none;">
+                <p>No se encontraron resultados para "<span id="search-term-display"></span>".</p>
+                <a id="web-search-link" href="#" target="_blank" rel="noopener noreferrer" class="winamp-link">
                     Buscar en Google
                 </a>
             </div>
@@ -187,28 +127,28 @@
 
             if (celsius === null || isNaN(celsius)) {
                 statusEmoji.textContent = '👨‍🍳';
-                fact = "¿Confundido? Encuentra la temperatura que buscas.";
+                fact = "Confundido? Encuentra la temperatura que buscas.";
             } else if (celsius < 0) {
                 statusEmoji.textContent = '🥶';
-                fact = "¡Demasiado frío! Esto es para congelar, no para cocinar.";
+                fact = "Demasiado frío! Esto es para congelar, no para cocinar.";
             } else if (celsius <= 4) {
                 statusEmoji.textContent = '🧊';
                 fact = "Temperatura de refrigeración. Ideal para mantener fresco.";
             } else if (celsius < 60) {
                 statusEmoji.textContent = '🤢';
-                fact = "¡Peligro! Zona de riesgo. No cocines a esta temperatura.";
+                fact = "Peligro! Zona de riesgo. No cocines a esta temperatura.";
             } else if (celsius < 74) {
                 statusEmoji.textContent = '😋';
-                fact = "¡Perfecto! Cocción a baja temperatura para jugosidad.";
+                fact = "Perfecto! Cocción a baja temperatura para jugosidad.";
             } else if (celsius < 100) {
                 statusEmoji.textContent = '👌';
                 fact = "Temperatura ideal para la mayoría de las cocciones.";
             } else if (celsius < 150) {
                 statusEmoji.textContent = '🥵';
-                fact = "¡Caliente! Cuidado con la sobrecocción.";
+                fact = "Caliente! Cuidado con la sobrecocción.";
             } else {
                 statusEmoji.textContent = '🔥';
-                fact = "¡Fuego! Temperatura para sellar o asar a alta intensidad.";
+                fact = "Fuego! Temperatura para sellar o asar a alta intensidad.";
             }
             temperatureFact.textContent = fact;
         }
@@ -229,29 +169,29 @@
                 section.className = 'guide-region-section';
                 
                 const title = document.createElement('h3');
-                title.className = 'text-xl font-semibold style="color: #274747;" mb-3';
+                title.className = 'winamp-section-subtitle';
                 title.textContent = region;
                 section.appendChild(title);
 
                 const list = document.createElement('ul');
-                list.className = 'space-y-2 text-stone-900';
+                list.className = 'winamp-list';
                 
                 items.forEach((item, index) => {
                     const listItem = document.createElement('li');
-                    listItem.className = 'flex flex-col bg-white p-3 rounded-lg';
+                    listItem.className = 'winamp-list-item';
                     if (index >= popularThreshold) {
                         listItem.style.display = 'none';
                         listItem.classList.add('extra-item');
                     }
 
-                    let contentHTML = `<div class="flex justify-between items-center mb-1"><span>${item.cut}</span>`;
+                    let contentHTML = `<span>${item.cut}</span>`;
                     if (item.doneness) {
-                        contentHTML += `<span class="font-mono text-lg style="color: #274747;"">Puntos de Cocción</span></div>`;
+                        contentHTML += `<span class="winamp-temp-label">Puntos de Cocción</span>`;
                         item.doneness.forEach(d => {
-                            contentHTML += `<div class="flex justify-between items-center text-sm ml-4"><span>- ${d.level}</span><span class="font-mono">${d.tempC}°C <span class="text-sky-600">/</span> ${d.tempF}°F</span></div>`;
+                            contentHTML += `<div class="winamp-sub-item"><span>- ${d.level}</span><span class="winamp-temp-value">${d.tempC}°C / ${d.tempF}°F</span></div>`;
                         });
                     } else {
-                        contentHTML += `<span class="font-mono text-lg">${item.tempC}°C <span class="text-sky-600">/</span> ${item.tempF}°F</span></div>`;
+                        contentHTML += `<span class="winamp-temp-value">${item.tempC}°C / ${item.tempF}°F</span>`;
                     }
                     listItem.innerHTML = contentHTML;
                     list.appendChild(listItem);
@@ -262,7 +202,7 @@
                 if (items.length > popularThreshold) {
                     const button = document.createElement('button');
                     button.textContent = 'Ver más...';
-                    button.className = 'show-more-btn w-full text-center p-2 mt-3 rounded-lg transition';
+                    button.className = 'show-more-btn winamp-button';
                     button.onclick = (e) => {
                         const listContainer = e.target.previousElementSibling;
                         const extraItems = listContainer.querySelectorAll('.extra-item');
@@ -282,7 +222,7 @@
             let totalVisibleItems = 0;
 
             sections.forEach(section => {
-                const listItems = section.querySelectorAll('li');
+                const listItems = section.querySelectorAll('.winamp-list-item');
                 let visibleItemsInSection = 0;
 
                 listItems.forEach(item => {
