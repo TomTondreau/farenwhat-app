@@ -16,7 +16,7 @@
         <!-- SECCIÓN DEL CONVERSOR -->
         <div class="te-panel">
             <div class="te-status-screen">
-                <img id="meat-illustration" class="te-meat-illustration" src="" alt="Ilustración de Carne">
+                <img id="meat-illustration" class="te-meat-illustration" src="images/imagen-imagen-3.0-generate-002-20250714-235348-0.png" alt="Ilustración de Carne">
                 <p id="temperature-fact" class="te-status-text"></p>
             </div>
 
@@ -119,34 +119,25 @@
         function updateStatus(celsius) {
             const { meatIllustration, temperatureFact } = elements;
             let fact = "";
-            let imageSrc = "";
 
             if (celsius === null || isNaN(celsius)) {
-                imageSrc = ""; // No image for initial state
+                meatIllustration.src = "images/imagen-imagen-3.0-generate-002-20250714-235348-0.png"; // Default image
                 fact = "ESPERANDO ENTRADA.";
             } else if (celsius < 0) {
-                imageSrc = ""; // No image for cold
                 fact = "DEMASIADO FRÍO.";
             } else if (celsius <= 4) {
-                imageSrc = ""; // No image for cold
                 fact = "REFRIGERACIÓN.";
             } else if (celsius < 60) {
-                imageSrc = ""; // No image for caution
                 fact = "ZONA DE RIESGO.";
             } else if (celsius < 74) {
-                imageSrc = ""; // No image for perfect
                 fact = "COCCIÓN PERFECTA.";
             } else if (celsius < 100) {
-                imageSrc = ""; // No image for hot
                 fact = "TEMPERATURA ALTA.";
             } else if (celsius < 150) {
-                imageSrc = ""; // No image for very hot
                 fact = "MUY CALIENTE!";
             } else {
-                imageSrc = ""; // No image for extreme
                 fact = "EXTREMO!";
             }
-            meatIllustration.src = imageSrc;
             temperatureFact.textContent = fact;
         }
 
