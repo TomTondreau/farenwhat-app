@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Fahren What? ¿Celsius Who?</title>
+    <title>FAHREN WHAT? CELSIUS WHO?</title>
     <link rel="stylesheet" href="teenage-engineering.css">
 </head>
 <body>
@@ -13,11 +13,10 @@
             FAHREN WHAT? CELSIUS WHO?
         </div>
 
-        <!-- Sección del Conversor -->
+        <!-- SECCIÓN DEL CONVERSOR -->
         <div class="te-panel">
             <div class="te-status-screen">
-                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="te-logo">
-                <span id="status-emoji" class="te-status-indicator"></span>
+                <div id="cooking-indicator" class="te-cooking-indicator"></div>
                 <p id="temperature-fact" class="te-status-text"></p>
             </div>
 
@@ -33,7 +32,7 @@
             </div>
         </div>
 
-        <!-- Sección de la Guía de Cocción -->
+        <!-- SECCIÓN DE LA GUÍA DE COCCIÓN -->
         <div class="te-panel">
             <h2 class="te-section-title">GUÍA DE COCCIÓN</h2>
             <div class="te-search-group">
@@ -54,7 +53,7 @@
         const elements = {
             celsiusInput: document.getElementById('celsius'),
             fahrenheitInput: document.getElementById('fahrenheit'),
-            statusEmoji: document.getElementById('status-emoji'),
+            cookingIndicator: document.getElementById('cooking-indicator'),
             temperatureFact: document.getElementById('temperature-fact'),
             cookingGuide: document.getElementById('cooking-guide'),
             searchInput: document.getElementById('search-guide'),
@@ -118,34 +117,45 @@
         function fahrenheitToCelsius(fahrenheit) { return (fahrenheit - 32) * 5/9; }
 
         function updateStatus(celsius) {
-            const { statusEmoji, temperatureFact } = elements;
+            const { cookingIndicator, temperatureFact } = elements;
             let fact = "";
+            let indicatorColor = "#ccc"; // Default grey
+            let indicatorText = "";
 
             if (celsius === null || isNaN(celsius)) {
-                statusEmoji.textContent = '...';
+                indicatorText = "...";
                 fact = "ESPERANDO ENTRADA.";
             } else if (celsius < 0) {
-                statusEmoji.textContent = '--';
+                indicatorColor = "#00aaff"; // Blue for cold
+                indicatorText = "--";
                 fact = "DEMASIADO FRÍO.";
             } else if (celsius <= 4) {
-                statusEmoji.textContent = '--';
+                indicatorColor = "#00aaff"; // Blue for cold
+                indicatorText = "--";
                 fact = "REFRIGERACIÓN.";
             } else if (celsius < 60) {
-                statusEmoji.textContent = '!';
+                indicatorColor = "#ffcc00"; // Yellow for caution
+                indicatorText = "!";
                 fact = "ZONA DE RIESGO.";
             } else if (celsius < 74) {
-                statusEmoji.textContent = 'OK';
+                indicatorColor = "#00ff00"; // Green for perfect
+                indicatorText = "OK";
                 fact = "COCCIÓN PERFECTA.";
             } else if (celsius < 100) {
-                statusEmoji.textContent = '++';
+                indicatorColor = "#ff6600"; // Orange for hot
+                indicatorText = "++";
                 fact = "TEMPERATURA ALTA.";
             } else if (celsius < 150) {
-                statusEmoji.textContent = '!!';
+                indicatorColor = "#ff0000"; // Red for very hot
+                indicatorText = "!!";
                 fact = "MUY CALIENTE!";
             } else {
-                statusEmoji.textContent = '!!!';
+                indicatorColor = "#8b0000"; // Dark red for extreme
+                indicatorText = "!!!";
                 fact = "EXTREMO!";
             }
+            cookingIndicator.style.backgroundColor = indicatorColor;
+            cookingIndicator.textContent = indicatorText;
             temperatureFact.textContent = fact;
         }
 
