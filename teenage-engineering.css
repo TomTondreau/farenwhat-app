@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap');
 
 body {
-    background-color: #f0f0f0; /* Light grey background */
-    color: #333; /* Dark grey text */
+    background-color: #1a1a1a; /* Dark background */
+    color: #e0e0e0; /* Light grey text */
     font-family: 'Inter', sans-serif; /* Clean, modern sans-serif font */
     margin: 0;
     padding: 20px;
@@ -14,28 +15,30 @@ body {
 
 .te-container {
     width: 100%;
-    max-width: 450px; /* Slightly wider than Winamp */
-    background-color: #fff; /* White background for the main app */
-    border-radius: 8px; /* Slightly rounded corners */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Subtle shadow */
+    max-width: 400px; /* Compact size */
+    background-color: #333; /* Dark grey body */
+    border: 1px solid #555; /* Subtle border */
+    border-radius: 4px; /* Slightly rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Subtle shadow for depth */
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
 .te-header {
-    background-color: #e0e0e0; /* Lighter grey header */
-    color: #333;
-    padding: 15px 20px;
-    font-size: 1.2em;
+    background-color: #222; /* Even darker header */
+    color: #e0e0e0;
+    padding: 10px 15px;
+    font-size: 1.1em;
     font-weight: bold;
     text-align: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #444;
 }
 
 .te-section {
-    padding: 20px;
-    border-bottom: 1px solid #eee;
+    padding: 15px;
+    border-bottom: 1px solid #444;
+    background-color: #333;
 }
 
 .te-section:last-of-type {
@@ -43,78 +46,87 @@ body {
 }
 
 .te-input-group {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .te-label {
     display: block;
-    font-size: 0.9em;
-    color: #666;
+    font-size: 0.85em;
+    color: #bbb;
     margin-bottom: 5px;
 }
 
 .te-input {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    width: calc(100% - 22px); /* Adjust for padding and border */
+    background-color: #2a2a2a; /* Dark input background */
+    border: 1px solid #555; /* Subtle border */
+    border-radius: 3px;
+    padding: 8px;
+    width: calc(100% - 18px); /* Adjust for padding and border */
     box-sizing: border-box;
-    font-size: 1.1em;
-    color: #333;
+    font-size: 1em;
+    color: #00ff00; /* Green text for digital feel */
+    font-family: 'Roboto Mono', monospace; /* Monospace for digital input */
 }
 
 .te-input:focus {
     outline: none;
-    border-color: #007bff; /* Accent color on focus */
+    border-color: #ff6600; /* Orange accent on focus */
 }
 
 .te-status-display {
+    background-color: #e0e0e0; /* Light grey LCD background */
+    color: #333; /* Dark text for LCD */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 3px;
     text-align: center;
-    margin-bottom: 20px;
+    font-family: 'Roboto Mono', monospace; /* Monospace for LCD text */
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2); /* Inset shadow for screen depth */
 }
 
 .te-status-emoji {
-    font-size: 3em;
-    margin-bottom: 10px;
-    color: #007bff; /* Accent color for emoji */
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    color: #333; /* Dark color for LCD text */
 }
 
 .te-fact-text {
-    font-size: 0.9em;
-    color: #666;
+    font-size: 0.8em;
+    color: #333;
 }
 
 .te-section-title {
-    font-size: 1.4em;
+    font-size: 1.2em;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
+    color: #e0e0e0;
+    margin-bottom: 15px;
     text-align: center;
 }
 
 .te-search-input {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    width: calc(100% - 22px);
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    border-radius: 3px;
+    padding: 8px;
+    width: calc(100% - 18px);
     box-sizing: border-box;
-    font-size: 1.1em;
-    color: #333;
+    font-size: 1em;
+    color: #00ff00;
+    font-family: 'Roboto Mono', monospace;
     margin-bottom: 15px;
 }
 
 .te-list-item {
-    background-color: #f8f8f8;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    padding: 12px;
-    margin-bottom: 10px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1em;
+    font-size: 0.9em;
+    font-family: 'Roboto Mono', monospace;
 }
 
 .te-list-item:last-child {
@@ -123,28 +135,29 @@ body {
 
 .te-list-item .te-temp-value {
     font-weight: bold;
-    color: #007bff; /* Accent color for temperatures */
+    color: #ff6600; /* Orange accent for temperatures */
 }
 
 .te-button {
-    background-color: #007bff; /* Accent color for buttons */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 15px;
+    background-color: #555; /* Grey button background */
+    color: #e0e0e0;
+    border: 1px outset #777; /* Outset border for 3D effect */
+    border-radius: 3px;
+    padding: 8px 12px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: bold;
     text-align: center;
-    transition: background-color 0.2s ease;
+    transition: all 0.1s ease;
 }
 
-.te-button:hover {
-    background-color: #0056b3;
+.te-button:active {
+    border: 1px inset #777; /* Inset border when pressed */
+    background-color: #444;
 }
 
 .te-link {
-    color: #007bff;
+    color: #ff6600; /* Orange for links */
     text-decoration: none;
 }
 
@@ -153,16 +166,16 @@ body {
 }
 
 .te-web-search-container {
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 3px;
     padding: 15px;
     margin-top: 20px;
     text-align: center;
 }
 
 .te-web-search-container p {
-    color: #666;
+    color: #e0e0e0;
     margin-bottom: 10px;
 }
 
@@ -174,4 +187,37 @@ input[type=number]::-webkit-outer-spin-button {
 }
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.te-logo {
+    width: 80px; /* Adjust size as needed */
+    height: auto;
+    margin: 0 auto 15px; /* Center and add space below */
+    display: block;
+}
+
+.te-input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for inputs */
+    gap: 15px;
+}
+
+.te-cooking-guide ul {
+    list-style: none;
+    padding: 0;
+}
+
+.te-section-subtitle {
+    font-size: 1em;
+    font-weight: bold;
+    color: #bbb;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+}
+
+.te-sub-item {
+    margin-left: 15px;
+    font-size: 0.85em;
+    color: #bbb;
 }
