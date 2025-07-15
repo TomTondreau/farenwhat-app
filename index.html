@@ -126,29 +126,29 @@
             let fact = "";
 
             if (celsius === null || isNaN(celsius)) {
-                statusEmoji.textContent = '👨‍🍳';
-                fact = "Confundido? Encuentra la temperatura que buscas.";
+                statusEmoji.textContent = '_';
+                fact = "Esperando entrada...";
             } else if (celsius < 0) {
-                statusEmoji.textContent = '🥶';
-                fact = "Demasiado frío! Esto es para congelar, no para cocinar.";
+                statusEmoji.textContent = '--';
+                fact = "Congelando...";
             } else if (celsius <= 4) {
-                statusEmoji.textContent = '🧊';
-                fact = "Temperatura de refrigeración. Ideal para mantener fresco.";
+                statusEmoji.textContent = '--';
+                fact = "Refrigeración.";
             } else if (celsius < 60) {
-                statusEmoji.textContent = '🤢';
-                fact = "Peligro! Zona de riesgo. No cocines a esta temperatura.";
+                statusEmoji.textContent = '!!';
+                fact = "Zona de riesgo!";
             } else if (celsius < 74) {
-                statusEmoji.textContent = '😋';
-                fact = "Perfecto! Cocción a baja temperatura para jugosidad.";
+                statusEmoji.textContent = 'OK';
+                fact = "Cocción perfecta.";
             } else if (celsius < 100) {
-                statusEmoji.textContent = '👌';
-                fact = "Temperatura ideal para la mayoría de las cocciones.";
+                statusEmoji.textContent = '++';
+                fact = "Temperatura alta.";
             } else if (celsius < 150) {
-                statusEmoji.textContent = '🥵';
-                fact = "Caliente! Cuidado con la sobrecocción.";
+                statusEmoji.textContent = '!!';
+                fact = "Muy caliente!";
             } else {
-                statusEmoji.textContent = '🔥';
-                fact = "Fuego! Temperatura para sellar o asar a alta intensidad.";
+                statusEmoji.textContent = 'XX';
+                fact = "Extremo!";
             }
             temperatureFact.textContent = fact;
         }

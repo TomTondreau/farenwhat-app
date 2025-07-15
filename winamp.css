@@ -1,8 +1,7 @@
-
 body {
-    background-color: #222; /* Dark grey background */
+    background-color: #000; /* Black background for the overall page */
     color: #c0c0c0; /* Light grey text */
-    font-family: 'Arial', sans-serif; /* Classic Winamp-like font */
+    font-family: 'monospace', 'Courier New', Courier, monospace; /* Pixelated/digital font */
     margin: 0;
     padding: 20px;
     display: flex;
@@ -10,6 +9,7 @@ body {
     align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
+    text-shadow: 1px 1px #000; /* For pixelated effect */
 }
 
 .winamp-container {
@@ -20,7 +20,7 @@ body {
     box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* For rounded corners if applied */
+    overflow: hidden;
 }
 
 .winamp-header {
@@ -32,6 +32,7 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #555;
+    text-shadow: 1px 1px #000;
 }
 
 .winamp-header .title {
@@ -56,6 +57,7 @@ body {
     width: calc(100% - 18px); /* Adjust for padding and border */
     box-sizing: border-box;
     font-size: 1em;
+    text-shadow: 1px 1px #000;
 }
 
 .winamp-button {
@@ -67,6 +69,7 @@ body {
     font-size: 0.9em;
     text-transform: uppercase;
     font-weight: bold;
+    text-shadow: 1px 1px #000;
 }
 
 .winamp-button:active {
@@ -78,6 +81,7 @@ body {
     font-size: 0.9em;
     margin-bottom: 5px;
     display: block;
+    text-shadow: 1px 1px #000;
 }
 
 .winamp-list-item {
@@ -88,6 +92,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-shadow: 1px 1px #000;
 }
 
 .winamp-list-item:last-child {
@@ -112,23 +117,28 @@ body {
     box-sizing: border-box;
     font-size: 1em;
     margin-bottom: 10px;
+    text-shadow: 1px 1px #000;
 }
 
 .winamp-status-emoji {
     font-size: 3em;
     text-align: center;
     margin-bottom: 10px;
+    color: #00ff00; /* Green for the emoji */
+    text-shadow: 2px 2px #000; /* More pronounced shadow for emoji */
 }
 
 .winamp-fact-text {
     font-size: 0.8em;
     text-align: center;
     color: #c0c0c0;
+    text-shadow: 1px 1px #000;
 }
 
 .winamp-link {
     color: #00aaff; /* Blue for links */
     text-decoration: none;
+    text-shadow: 1px 1px #000;
 }
 
 .winamp-link:hover {
@@ -142,6 +152,7 @@ body {
     margin-bottom: 10px;
     border-bottom: 1px solid #444;
     padding-bottom: 5px;
+    text-shadow: 1px 1px #000;
 }
 
 .guide-region-section ul {
@@ -154,6 +165,7 @@ body {
     border: 1px solid #444;
     padding: 8px;
     margin-bottom: 5px;
+    text-shadow: 1px 1px #000;
 }
 
 .guide-region-section li span {
@@ -176,6 +188,7 @@ body {
     font-weight: bold;
     width: 100%;
     margin-top: 10px;
+    text-shadow: 1px 1px #000;
 }
 
 .show-more-btn:active {
@@ -188,6 +201,7 @@ body {
     padding: 10px;
     margin-top: 15px;
     text-align: center;
+    text-shadow: 1px 1px #000;
 }
 
 .web-search-container p {
@@ -202,6 +216,7 @@ body {
     text-decoration: none;
     font-weight: bold;
     border: 2px outset #00aaff;
+    text-shadow: 1px 1px #000;
 }
 
 .web-search-container a:active {
