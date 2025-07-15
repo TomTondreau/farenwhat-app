@@ -4,50 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Fahren What? ¿Celsius Who?</title>
-    <link rel="stylesheet" href="winamp.css">
+    <link rel="stylesheet" href="teenage-engineering.css">
 </head>
 <body>
 
-    <div class="winamp-container">
-        <div class="winamp-header">
-            <span class="title">Fahren What?</span>
-            <span>_ □ X</span>
+    <div class="te-container">
+        <div class="te-header">
+            Fahren What? Celsius Who?
         </div>
 
         <!-- Sección del Conversor -->
-        <div class="winamp-section">
-            <div class="text-center">
-                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="winamp-logo">
+        <div class="te-section">
+            <div class="te-status-display">
+                <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="te-logo">
+                <span id="status-emoji" class="te-status-emoji"></span>
+                <p id="temperature-fact" class="te-fact-text"></p>
             </div>
 
-            <div class="winamp-status">
-                <span id="status-emoji" class="winamp-status-emoji"></span>
-                <p id="temperature-fact" class="winamp-fact-text"></p>
-            </div>
-
-            <div class="winamp-converter-grid">
-                <div class="winamp-input-group">
-                    <label for="celsius" class="winamp-label">Celsius (°C)</label>
-                    <input type="number" id="celsius" placeholder="Ej: 74" class="winamp-input">
+            <div class="te-input-grid">
+                <div class="te-input-group">
+                    <label for="celsius" class="te-label">Celsius (°C)</label>
+                    <input type="number" id="celsius" placeholder="Ej: 74" class="te-input">
                 </div>
-                <div class="winamp-input-group">
-                    <label for="fahrenheit" class="winamp-label">Fahrenheit (°F)</label>
-                    <input type="number" id="fahrenheit" placeholder="Ej: 165" class="winamp-input">
+                <div class="te-input-group">
+                    <label for="fahrenheit" class="te-label">Fahrenheit (°F)</label>
+                    <input type="number" id="fahrenheit" placeholder="Ej: 165" class="te-input">
                 </div>
             </div>
         </div>
 
         <!-- Sección de la Guía de Cocción -->
-        <div class="winamp-section">
-            <h2 class="winamp-section-title">Encuentra el punto ideal</h2>
-            <div class="winamp-search-group">
-                <input type="search" id="search-guide" placeholder="🔍 Buscar corte (ej: Lomo, Salmón...)" class="winamp-search-input">
+        <div class="te-section">
+            <h2 class="te-section-title">Encuentra el punto ideal</h2>
+            <div class="te-search-group">
+                <input type="search" id="search-guide" placeholder="🔍 Buscar corte (ej: Lomo, Salmón...)" class="te-search-input">
             </div>
-            <div id="cooking-guide" class="winamp-cooking-guide"></div>
+            <div id="cooking-guide" class="te-cooking-guide"></div>
             
-            <div id="web-search-container" class="web-search-container" style="display: none;">
+            <div id="web-search-container" class="te-web-search-container" style="display: none;">
                 <p>No se encontraron resultados para "<span id="search-term-display"></span>".</p>
-                <a id="web-search-link" href="#" target="_blank" rel="noopener noreferrer" class="winamp-link">
+                <a id="web-search-link" href="#" target="_blank" rel="noopener noreferrer" class="te-link">
                     Buscar en Google
                 </a>
             </div>
@@ -126,17 +122,17 @@
             let fact = "";
 
             if (celsius === null || isNaN(celsius)) {
-                statusEmoji.textContent = '_';
-                fact = "Esperando entrada...";
+                statusEmoji.textContent = '...';
+                fact = "Esperando entrada.";
             } else if (celsius < 0) {
                 statusEmoji.textContent = '--';
-                fact = "Congelando...";
+                fact = "Demasiado frío.";
             } else if (celsius <= 4) {
                 statusEmoji.textContent = '--';
                 fact = "Refrigeración.";
             } else if (celsius < 60) {
-                statusEmoji.textContent = '!!';
-                fact = "Zona de riesgo!";
+                statusEmoji.textContent = '!';
+                fact = "Zona de riesgo.";
             } else if (celsius < 74) {
                 statusEmoji.textContent = 'OK';
                 fact = "Cocción perfecta.";
@@ -147,7 +143,7 @@
                 statusEmoji.textContent = '!!';
                 fact = "Muy caliente!";
             } else {
-                statusEmoji.textContent = 'XX';
+                statusEmoji.textContent = '!!!';
                 fact = "Extremo!";
             }
             temperatureFact.textContent = fact;
@@ -166,19 +162,19 @@
             for (const region in groupedByRegion) {
                 const items = groupedByRegion[region];
                 const section = document.createElement('div');
-                section.className = 'guide-region-section';
+                section.className = 'te-guide-region-section';
                 
                 const title = document.createElement('h3');
-                title.className = 'winamp-section-subtitle';
+                title.className = 'te-section-subtitle';
                 title.textContent = region;
                 section.appendChild(title);
 
                 const list = document.createElement('ul');
-                list.className = 'winamp-list';
+                list.className = 'te-list';
                 
                 items.forEach((item, index) => {
                     const listItem = document.createElement('li');
-                    listItem.className = 'winamp-list-item';
+                    listItem.className = 'te-list-item';
                     if (index >= popularThreshold) {
                         listItem.style.display = 'none';
                         listItem.classList.add('extra-item');
@@ -186,12 +182,12 @@
 
                     let contentHTML = `<span>${item.cut}</span>`;
                     if (item.doneness) {
-                        contentHTML += `<span class="winamp-temp-label">Puntos de Cocción</span>`;
+                        contentHTML += `<span class="te-temp-label">Puntos de Cocción</span>`;
                         item.doneness.forEach(d => {
-                            contentHTML += `<div class="winamp-sub-item"><span>- ${d.level}</span><span class="winamp-temp-value">${d.tempC}°C / ${d.tempF}°F</span></div>`;
+                            contentHTML += `<div class="te-sub-item"><span>- ${d.level}</span><span class="te-temp-value">${d.tempC}°C / ${d.tempF}°F</span></div>`;
                         });
                     } else {
-                        contentHTML += `<span class="winamp-temp-value">${item.tempC}°C / ${item.tempF}°F</span>`;
+                        contentHTML += `<span class="te-temp-value">${item.tempC}°C / ${item.tempF}°F</span>`;
                     }
                     listItem.innerHTML = contentHTML;
                     list.appendChild(listItem);
@@ -202,7 +198,7 @@
                 if (items.length > popularThreshold) {
                     const button = document.createElement('button');
                     button.textContent = 'Ver más...';
-                    button.className = 'show-more-btn winamp-button';
+                    button.className = 'show-more-btn te-button';
                     button.onclick = (e) => {
                         const listContainer = e.target.previousElementSibling;
                         const extraItems = listContainer.querySelectorAll('.extra-item');
@@ -218,11 +214,11 @@
         function handleSearch() {
             const { searchInput, cookingGuide, webSearchContainer, searchTermDisplay, webSearchLink } = elements;
             const searchTerm = searchInput.value.toLowerCase().trim();
-            const sections = cookingGuide.querySelectorAll('.guide-region-section');
+            const sections = cookingGuide.querySelectorAll('.te-guide-region-section');
             let totalVisibleItems = 0;
 
             sections.forEach(section => {
-                const listItems = section.querySelectorAll('.winamp-list-item');
+                const listItems = section.querySelectorAll('.te-list-item');
                 let visibleItemsInSection = 0;
 
                 listItems.forEach(item => {
