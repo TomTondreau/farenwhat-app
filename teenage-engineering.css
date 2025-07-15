@@ -1,9 +1,21 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap');
 
+:root {
+    --te-black: #1a1a1a;
+    --te-dark-grey: #333;
+    --te-medium-grey: #444;
+    --te-light-grey: #e0e0e0;
+    --te-text-dark: #333;
+    --te-text-light: #e0e0e0;
+    --te-accent-orange: #ff6600;
+    --te-accent-green: #00ff00;
+}
+
 body {
-    background-color: #1a1a1a; /* Dark background */
-    color: #e0e0e0; /* Light grey text */
-    font-family: 'Inter', sans-serif; /* Clean, modern sans-serif font */
+    background-color: var(--te-black);
+    color: var(--te-text-light);
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -13,36 +25,65 @@ body {
     box-sizing: border-box;
 }
 
-.te-container {
+.te-device-frame {
     width: 100%;
-    max-width: 400px; /* Compact size */
-    background-color: #333; /* Dark grey body */
-    border: 1px solid #555; /* Subtle border */
-    border-radius: 4px; /* Slightly rounded corners */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Subtle shadow for depth */
+    max-width: 420px;
+    background-color: var(--te-dark-grey);
+    border: 2px solid var(--te-medium-grey);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-}
-
-.te-header {
-    background-color: #222; /* Even darker header */
-    color: #e0e0e0;
-    padding: 10px 15px;
-    font-size: 1.1em;
-    font-weight: bold;
-    text-align: center;
-    border-bottom: 1px solid #444;
-}
-
-.te-section {
     padding: 15px;
-    border-bottom: 1px solid #444;
-    background-color: #333;
 }
 
-.te-section:last-of-type {
-    border-bottom: none;
+.te-panel {
+    background-color: var(--te-medium-grey);
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+.te-panel:last-of-type {
+    margin-bottom: 0;
+}
+
+.te-header-display {
+    background-color: var(--te-light-grey);
+    color: var(--te-text-dark);
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.te-status-screen {
+    background-color: var(--te-light-grey);
+    color: var(--te-text-dark);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+.te-status-indicator {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    color: var(--te-text-dark);
+}
+
+.te-status-text {
+    font-size: 0.8em;
+    color: var(--te-text-dark);
 }
 
 .te-input-group {
@@ -52,53 +93,31 @@ body {
 .te-label {
     display: block;
     font-size: 0.85em;
-    color: #bbb;
+    color: var(--te-text-light);
     margin-bottom: 5px;
 }
 
 .te-input {
-    background-color: #2a2a2a; /* Dark input background */
-    border: 1px solid #555; /* Subtle border */
+    background-color: #2a2a2a;
+    border: 1px solid #555;
     border-radius: 3px;
     padding: 8px;
-    width: calc(100% - 18px); /* Adjust for padding and border */
+    width: calc(100% - 18px);
     box-sizing: border-box;
     font-size: 1em;
-    color: #00ff00; /* Green text for digital feel */
-    font-family: 'Roboto Mono', monospace; /* Monospace for digital input */
+    color: var(--te-accent-green);
+    font-family: 'Roboto Mono', monospace;
 }
 
 .te-input:focus {
     outline: none;
-    border-color: #ff6600; /* Orange accent on focus */
-}
-
-.te-status-display {
-    background-color: #e0e0e0; /* Light grey LCD background */
-    color: #333; /* Dark text for LCD */
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 3px;
-    text-align: center;
-    font-family: 'Roboto Mono', monospace; /* Monospace for LCD text */
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.2); /* Inset shadow for screen depth */
-}
-
-.te-status-emoji {
-    font-size: 2.5em;
-    margin-bottom: 5px;
-    color: #333; /* Dark color for LCD text */
-}
-
-.te-fact-text {
-    font-size: 0.8em;
-    color: #333;
+    border-color: var(--te-accent-orange);
 }
 
 .te-section-title {
     font-size: 1.2em;
     font-weight: bold;
-    color: #e0e0e0;
+    color: var(--te-text-light);
     margin-bottom: 15px;
     text-align: center;
 }
@@ -111,7 +130,7 @@ body {
     width: calc(100% - 18px);
     box-sizing: border-box;
     font-size: 1em;
-    color: #00ff00;
+    color: var(--te-accent-green);
     font-family: 'Roboto Mono', monospace;
     margin-bottom: 15px;
 }
@@ -135,13 +154,13 @@ body {
 
 .te-list-item .te-temp-value {
     font-weight: bold;
-    color: #ff6600; /* Orange accent for temperatures */
+    color: var(--te-accent-orange);
 }
 
 .te-button {
-    background-color: #555; /* Grey button background */
-    color: #e0e0e0;
-    border: 1px outset #777; /* Outset border for 3D effect */
+    background-color: #555;
+    color: var(--te-text-light);
+    border: 1px outset #777;
     border-radius: 3px;
     padding: 8px 12px;
     cursor: pointer;
@@ -152,12 +171,12 @@ body {
 }
 
 .te-button:active {
-    border: 1px inset #777; /* Inset border when pressed */
+    border: 1px inset #777;
     background-color: #444;
 }
 
 .te-link {
-    color: #ff6600; /* Orange for links */
+    color: var(--te-accent-orange);
     text-decoration: none;
 }
 
@@ -175,7 +194,7 @@ body {
 }
 
 .te-web-search-container p {
-    color: #e0e0e0;
+    color: var(--te-text-light);
     margin-bottom: 10px;
 }
 
@@ -190,15 +209,15 @@ input[type=number] {
 }
 
 .te-logo {
-    width: 80px; /* Adjust size as needed */
+    width: 80px;
     height: auto;
-    margin: 0 auto 15px; /* Center and add space below */
+    margin: 0 auto 15px;
     display: block;
 }
 
 .te-input-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns for inputs */
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
 

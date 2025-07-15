@@ -8,43 +8,43 @@
 </head>
 <body>
 
-    <div class="te-container">
-        <div class="te-header">
-            Fahren What? Celsius Who?
+    <div class="te-device-frame">
+        <div class="te-header-display">
+            FAHREN WHAT? CELSIUS WHO?
         </div>
 
         <!-- Sección del Conversor -->
-        <div class="te-section">
-            <div class="te-status-display">
+        <div class="te-panel">
+            <div class="te-status-screen">
                 <img src="logo.png" alt="¿Fahren What? ¿Celsius Who? Logo" class="te-logo">
-                <span id="status-emoji" class="te-status-emoji"></span>
-                <p id="temperature-fact" class="te-fact-text"></p>
+                <span id="status-emoji" class="te-status-indicator"></span>
+                <p id="temperature-fact" class="te-status-text"></p>
             </div>
 
             <div class="te-input-grid">
                 <div class="te-input-group">
-                    <label for="celsius" class="te-label">Celsius (°C)</label>
-                    <input type="number" id="celsius" placeholder="Ej: 74" class="te-input">
+                    <label for="celsius" class="te-label">CELSIUS (°C)</label>
+                    <input type="number" id="celsius" placeholder="74" class="te-input">
                 </div>
                 <div class="te-input-group">
-                    <label for="fahrenheit" class="te-label">Fahrenheit (°F)</label>
-                    <input type="number" id="fahrenheit" placeholder="Ej: 165" class="te-input">
+                    <label for="fahrenheit" class="te-label">FAHRENHEIT (°F)</label>
+                    <input type="number" id="fahrenheit" placeholder="165" class="te-input">
                 </div>
             </div>
         </div>
 
         <!-- Sección de la Guía de Cocción -->
-        <div class="te-section">
-            <h2 class="te-section-title">Encuentra el punto ideal</h2>
+        <div class="te-panel">
+            <h2 class="te-section-title">GUÍA DE COCCIÓN</h2>
             <div class="te-search-group">
-                <input type="search" id="search-guide" placeholder="🔍 Buscar corte (ej: Lomo, Salmón...)" class="te-search-input">
+                <input type="search" id="search-guide" placeholder="BUSCAR CORTE (EJ: LOMO, SALMÓN...)" class="te-search-input">
             </div>
             <div id="cooking-guide" class="te-cooking-guide"></div>
             
             <div id="web-search-container" class="te-web-search-container" style="display: none;">
-                <p>No se encontraron resultados para "<span id="search-term-display"></span>".</p>
-                <a id="web-search-link" href="#" target="_blank" rel="noopener noreferrer" class="te-link">
-                    Buscar en Google
+                <p>NO SE ENCONTRARON RESULTADOS PARA "<span id="search-term-display"></span>".</p>
+                <a id="web-search-link" href="#" target="_blank" rel="noopener noreferrer" class="te-button">
+                    BUSCAR EN GOOGLE
                 </a>
             </div>
         </div>
@@ -64,53 +64,53 @@
         };
 
         const cookingData = [
-            { region: 'Vacuno / Res', cut: 'Filete / Lomo', doneness: [
-                { level: 'Rare', tempC: 52, tempF: 125 },
-                { level: 'Medium Rare', tempC: 55, tempF: 131 },
-                { level: 'Medium', tempC: 60, tempF: 140 },
-                { level: 'Medium Well', tempC: 65, tempF: 150 },
-                { level: 'Well Done', tempC: 71, tempF: 160 }
+            { region: 'VACUNO / RES', cut: 'FILETE / LOMO', doneness: [
+                { level: 'RARE', tempC: 52, tempF: 125 },
+                { level: 'MEDIUM RARE', tempC: 55, tempF: 131 },
+                { level: 'MEDIUM', tempC: 60, tempF: 140 },
+                { level: 'MEDIUM WELL', tempC: 65, tempF: 150 },
+                { level: 'WELL DONE', tempC: 71, tempF: 160 }
             ]},
-            { region: 'Vacuno / Res', cut: 'Lomo Vetado', doneness: [
-                { level: 'Medium Rare', tempC: 55, tempF: 131 },
-                { level: 'Medium', tempC: 60, tempF: 140 },
-                { level: 'Well Done', tempC: 71, tempF: 160 }
+            { region: 'VACUNO / RES', cut: 'LOMO VETADO', doneness: [
+                { level: 'MEDIUM RARE', tempC: 55, tempF: 131 },
+                { level: 'MEDIUM', tempC: 60, tempF: 140 },
+                { level: 'WELL DONE', tempC: 71, tempF: 160 }
             ]},
-            { region: 'Vacuno / Res', cut: 'Asado de Tira', tempC: 88, tempF: 190 },
-            { region: 'Vacuno / Res', cut: 'Punta de Ganso', doneness: [
-                { level: 'Medium', tempC: 60, tempF: 140 },
-                { level: 'Well Done', tempC: 71, tempF: 160 }
+            { region: 'VACUNO / RES', cut: 'ASADO DE TIRA', tempC: 88, tempF: 190 },
+            { region: 'VACUNO / RES', cut: 'PUNTA DE GANSO', doneness: [
+                { level: 'MEDIUM', tempC: 60, tempF: 140 },
+                { level: 'WELL DONE', tempC: 71, tempF: 160 }
             ]},
-            { region: 'Vacuno / Res', cut: 'Hamburguesas', tempC: 71, tempF: 160 },
-            { region: 'Vacuno / Res', cut: 'Brisket (BBQ)', tempC: 93, tempF: 200 },
-            { region: 'Vacuno / Res', cut: 'Vacío', doneness: [
-                { level: 'Jugoso', tempC: 60, tempF: 140 },
-                { level: 'Cocido', tempC: 71, tempF: 160 }
+            { region: 'VACUNO / RES', cut: 'HAMBURGUESAS', tempC: 71, tempF: 160 },
+            { region: 'VACUNO / RES', cut: 'BRISKET (BBQ)', tempC: 93, tempF: 200 },
+            { region: 'VACUNO / RES', cut: 'VACÍO', doneness: [
+                { level: 'JUGOSO', tempC: 60, tempF: 140 },
+                { level: 'COCIDO', tempC: 71, tempF: 160 }
             ]},
-            { region: 'Cerdo', cut: 'Costillar de Cerdo (BBQ)', tempC: 90, tempF: 195 },
-            { region: 'Cerdo', cut: 'Pulled Pork', tempC: 93, tempF: 200 },
-            { region: 'Cerdo', cut: 'Lomo de Cerdo', tempC: 63, tempF: 145 },
-            { region: 'Cerdo', cut: 'Chuletas de Cerdo', tempC: 63, tempF: 145 },
-            { region: 'Aves', cut: 'Pollo Entero', tempC: 74, tempF: 165 },
-            { region: 'Aves', cut: 'Pechuga de Pollo', tempC: 74, tempF: 165 },
-            { region: 'Aves', cut: 'Muslos de Pollo', tempC: 79, tempF: 175 },
-            { region: 'Aves', cut: 'Pavo (Pechuga)', tempC: 74, tempF: 165 },
-            { region: 'Cordero', cut: 'Pierna de Cordero', doneness: [
-                { level: 'Medium', tempC: 63, tempF: 145 },
-                { level: 'Well Done', tempC: 71, tempF: 160 }
+            { region: 'CERDO', cut: 'COSTILLAR DE CERDO (BBQ)', tempC: 90, tempF: 195 },
+            { region: 'CERDO', cut: 'PULLED PORK', tempC: 93, tempF: 200 },
+            { region: 'CERDO', cut: 'LOMO DE CERDO', tempC: 63, tempF: 145 },
+            { region: 'CERDO', cut: 'CHULETAS DE CERDO', tempC: 63, tempF: 145 },
+            { region: 'AVES', cut: 'POLLO ENTERO', tempC: 74, tempF: 165 },
+            { region: 'AVES', cut: 'PECHUGA DE POLLO', tempC: 74, tempF: 165 },
+            { region: 'AVES', cut: 'MUSLOS DE POLLO', tempC: 79, tempF: 175 },
+            { region: 'AVES', cut: 'PAVO (PECHUGA)', tempC: 74, tempF: 165 },
+            { region: 'CORDERO', cut: 'PIERNA DE CORDERO', doneness: [
+                { level: 'MEDIUM', tempC: 63, tempF: 145 },
+                { level: 'WELL DONE', tempC: 71, tempF: 160 }
             ]},
-            { region: 'Cordero', cut: 'Chuletas de Cordero', doneness: [
-                { level: 'Medium Rare', tempC: 57, tempF: 135 },
-                { level: 'Medium', tempC: 63, tempF: 145 }
+            { region: 'CORDERO', cut: 'CHULETAS DE CORDERO', doneness: [
+                { level: 'MEDIUM RARE', tempC: 57, tempF: 135 },
+                { level: 'MEDIUM', tempC: 63, tempF: 145 }
             ]},
-            { region: 'Pescado', cut: 'Salmón', tempC: 60, tempF: 140 },
-            { region: 'Pescado', cut: 'Atún (Sellado)', tempC: 49, tempF: 120 },
-            { region: 'Pescado', cut: 'Merluza / Corvina', tempC: 63, tempF: 145 },
-            { region: 'Proteínas Exóticas', cut: 'Carne de Cocodrilo', tempC: 74, tempF: 165 },
-            { region: 'Proteínas Exóticas', cut: 'Ancas de Rana', tempC: 74, tempF: 165 },
-            { region: 'Proteínas Exóticas', cut: 'Ciervo / Venado', doneness: [
-                { level: 'Medium Rare', tempC: 57, tempF: 135 },
-                { level: 'Medium', tempC: 63, tempF: 145 }
+            { region: 'PESCADO', cut: 'SALMÓN', tempC: 60, tempF: 140 },
+            { region: 'PESCADO', cut: 'ATÚN (SELLADO)', tempC: 49, tempF: 120 },
+            { region: 'PESCADO', cut: 'MERLUZA / CORVINA', tempC: 63, tempF: 145 },
+            { region: 'PROTEÍNAS EXÓTICAS', cut: 'CARNE DE COCODRILO', tempC: 74, tempF: 165 },
+            { region: 'PROTEÍNAS EXÓTICAS', cut: 'ANCAS DE RANA', tempC: 74, tempF: 165 },
+            { region: 'PROTEÍNAS EXÓTICAS', cut: 'CIERVO / VENADO', doneness: [
+                { level: 'MEDIUM RARE', tempC: 57, tempF: 135 },
+                { level: 'MEDIUM', tempC: 63, tempF: 145 }
             ]}
         ];
 
@@ -123,28 +123,28 @@
 
             if (celsius === null || isNaN(celsius)) {
                 statusEmoji.textContent = '...';
-                fact = "Esperando entrada.";
+                fact = "ESPERANDO ENTRADA.";
             } else if (celsius < 0) {
                 statusEmoji.textContent = '--';
-                fact = "Demasiado frío.";
+                fact = "DEMASIADO FRÍO.";
             } else if (celsius <= 4) {
                 statusEmoji.textContent = '--';
-                fact = "Refrigeración.";
+                fact = "REFRIGERACIÓN.";
             } else if (celsius < 60) {
                 statusEmoji.textContent = '!';
-                fact = "Zona de riesgo.";
+                fact = "ZONA DE RIESGO.";
             } else if (celsius < 74) {
                 statusEmoji.textContent = 'OK';
-                fact = "Cocción perfecta.";
+                fact = "COCCIÓN PERFECTA.";
             } else if (celsius < 100) {
                 statusEmoji.textContent = '++';
-                fact = "Temperatura alta.";
+                fact = "TEMPERATURA ALTA.";
             } else if (celsius < 150) {
                 statusEmoji.textContent = '!!';
-                fact = "Muy caliente!";
+                fact = "MUY CALIENTE!";
             } else {
                 statusEmoji.textContent = '!!!';
-                fact = "Extremo!";
+                fact = "EXTREMO!";
             }
             temperatureFact.textContent = fact;
         }
@@ -160,7 +160,7 @@
             }, {});
 
             for (const region in groupedByRegion) {
-                const items = groupedByByRegion[region];
+                const items = groupedByRegion[region];
                 const section = document.createElement('div');
                 section.className = 'te-guide-region-section';
                 
@@ -182,7 +182,7 @@
 
                     let contentHTML = `<span>${item.cut}</span>`;
                     if (item.doneness) {
-                        contentHTML += `<span class="te-temp-label">Puntos de Cocción</span>`;
+                        contentHTML += `<span class="te-temp-label">PUNTOS DE COCCIÓN</span>`;
                         item.doneness.forEach(d => {
                             contentHTML += `<div class="te-sub-item"><span>- ${d.level}</span><span class="te-temp-value">${d.tempC}°C / ${d.tempF}°F</span></div>`;
                         });
@@ -197,7 +197,7 @@
 
                 if (items.length > popularThreshold) {
                     const button = document.createElement('button');
-                    button.textContent = 'Ver más...';
+                    button.textContent = 'VER MÁS...';
                     button.className = 'show-more-btn te-button';
                     button.onclick = (e) => {
                         const listContainer = e.target.previousElementSibling;
@@ -252,7 +252,7 @@
                 webSearchLink.href = `https://www.google.com/search?q=temperatura+interna+de+coccion+${encodeURIComponent(searchInput.value)}`;
                 webSearchContainer.style.display = 'block';
             } else {
-                webSearchContainer.style.display = 'none
+                webSearchContainer.style.display = 'none';
             }
         }
 
